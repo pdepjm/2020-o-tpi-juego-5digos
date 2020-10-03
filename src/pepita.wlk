@@ -3,14 +3,15 @@ import pepita.*
 import terreno.*
 import personaje.*
 import villano.*
+import estructuras.*
 
-object EscapeCarpincho{
+object juegos{
 	method iniciar() {
 		self.configurarJuego()
 		self.agregarPersonajes()
-		self.agragarObjeto()
-		self.agragarVillano()
+		self.agregarVillano()
 		self.configurarTeclas()
+		self.configurarAcciones()
 		game.start()
 	}
 	method configurarJuego() {
@@ -20,30 +21,21 @@ object EscapeCarpincho{
 		game.boardGround("MapaBasicoJPG.jpg")
 	}
 	method agregarPersonajes() {
-		game.addVisualCharacter(carpincho2)
 		game.addVisualCharacter(carpincho)
 	}
-	method agragarObjeto(){
-		game.addVisual(mate1)
-		game.addVisual(mate2)
-		game.addVisual(mate3)
-	}
-	method agragarVillano(){
+	method agregarVillano(){
 		game.addVisual(villano1)
 		game.addVisual(villano2)
 		game.addVisual(villano3)
 	}
-	
 	method configurarTeclas() {
-		keyboard.up().onPressDo({carpincho.moverseA(carpincho.position().up(0.25))})
-		keyboard.down().onPressDo({carpincho.moverseA(carpincho.position().down(0.25))})
-		keyboard.left().onPressDo({carpincho.moverseA(carpincho.position().left(0.5))})
-		keyboard.right().onPressDo({carpincho.moverseA(carpincho.position().right(0.5))})
-		
-		keyboard.up().onPressDo({carpincho2.moverseA(carpincho2.position().up(0.25))})
-		keyboard.down().onPressDo({carpincho2.moverseA(carpincho2.position().down(0.25))})
-		keyboard.left().onPressDo({carpincho2.moverseA(carpincho2.position().left(0.5))})
-		keyboard.right().onPressDo({carpincho2.moverseA(carpincho2.position().right(0.5))})
+		keyboard.up().onPressDo({carpincho.subir()})
+		keyboard.down().onPressDo({carpincho.bajar()})
+		keyboard.left().onPressDo({carpincho.izquierda()})
+		keyboard.right().onPressDo({carpincho.derecha()})
+	}
+	method configurarAcciones() {
+		game.onCollideDo(carpincho, { visualColisionado => visualColisionado.chocasteCarpincho()})
 	}
 }
 

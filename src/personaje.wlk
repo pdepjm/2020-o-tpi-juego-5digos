@@ -1,17 +1,13 @@
 import wollok.game.*
+import estructuras.*
+import villano.*
 
-//no hay que repetir la logica
+
+
 object carpincho {
-	
-	var property energia = 100 //falta poner limite a 100 
-	var property position = game.at(1,5)
+    var property jugadorVivo = true
+	var property position = game.at(9,7)
 	var property image="CarpDerecha.png"
-	
-	method tomarMate(){
-		if(energia<100){
-			energia+=25
-		}
-	}
 	
 	method subir(){
 		self.moverseA(position.up(0.25))
@@ -22,47 +18,23 @@ object carpincho {
 		self.image("CarpFrente.png")
 	}
 	method izquierda(){
-		self.moverseA(position.left(0.5))
+		self.moverseA(position.left(0.25))
 		self.image("CarpIzquierda.png")
 	}
 	method derecha(){
-		self.moverseA(position.right(0.5))
+		self.moverseA(position.right(0.25))
 		self.image("CarpDerecha.png")
 	}
 	method moverseA(pos){
+		//falta poner reestriccion para los muros
 			position = pos
 	}
-}
-//esta mal repite logica
-object carpincho2 {
-	var property energia = 100
-	var property position = game.at(1,1)
-	var property image="CarpDerecha.png"
-	
-	method tomarMate(){
-		if(energia<100){
-			energia+=25
-		}
+	method agarrar(unMate){
+		unMate.desaparecer()
 	}
-	
-	method subir(){
-		self.moverseA(position.up(0.25))
-		self.image("CarpBack.png")
-	}
-	method bajar(){
-		self.moverseA(position.down(0.25))
-		self.image("CarpFrente.png")
-	}
-	method izquierda(){
-		self.moverseA(position.left(0.5))
-		self.image("CarpIzquierda.png")
-	}
-	method derecha(){
-		self.moverseA(position.right(0.5))
-		self.image("CarpDerecha.png")
-	}
-	method moverseA(pos){
-			position = pos
+	method perdiste(){
+		mapa.remover(position)
+		game.removeVisual(self)
+		jugadorVivo = false
 	}
 }
-

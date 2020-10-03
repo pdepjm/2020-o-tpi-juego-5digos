@@ -3,6 +3,6 @@ import pepita.*
 import juego.*
 
 program game {
-	EscapeCarpincho.iniciar()
+	juegos.iniciar()
 	game.start()
 }

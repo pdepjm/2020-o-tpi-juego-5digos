@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><projectDescription>
-	<name>empty-game</name>
-	<comment/>
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>2020-o-tpi-juego-5digos</name>
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -31,4 +32,31 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.uqbar.project.wollok.wollokNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>assets/MapaBasicoJPG.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-5-PROJECT_LOC/Downloads/MapaBasicoJPG.jpg</locationURI>
+		</link>
+		<link>
+			<name>assets/ZombieBack.png</name>
+			<type>1</type>
+			<locationURI>PARENT-5-PROJECT_LOC/Downloads/ZombieBack.png</locationURI>
+		</link>
+		<link>
+			<name>assets/ZombieDerecha.png</name>
+			<type>1</type>
+			<locationURI>PARENT-5-PROJECT_LOC/Downloads/ZombieDerecha.png</locationURI>
+		</link>
+		<link>
+			<name>assets/ZombieFrente.png</name>
+			<type>1</type>
+			<locationURI>PARENT-5-PROJECT_LOC/Downloads/ZombieFrente.png</locationURI>
+		</link>
+		<link>
+			<name>assets/ZombieIzquierda.png</name>
+			<type>1</type>
+			<locationURI>PARENT-5-PROJECT_LOC/Downloads/ZombieIzquierda.png</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

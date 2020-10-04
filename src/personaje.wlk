@@ -4,7 +4,7 @@ import estructuras.*
 object personaje {
 	var jugadorVivo = true
 	var property direccion = derecha
-	var property position = game.at(2,7)
+	var property position = game.at(1,1)
 	method ir(nuevaDireccion){
 			direccion = nuevaDireccion
 			self.moverse()
@@ -16,6 +16,9 @@ object personaje {
 	}
 	method image (){
 	    return direccion.image()
+	}
+	method agarrar(unaComida){
+		unaComida.efectos(self)
 	}
 	method perder(){
 		game.removeVisual(self)
@@ -38,11 +41,11 @@ object abajo{
 	method image() = "CarpFrente.png"
 	method avanzar (position,cantidad) = position.down(cantidad)
 }
-
+ 
 object personaje2 {
 	var jugadorVivo = true
 	var property direccion = derecha
-	var property position = game.at(2,17)
+	var property position = game.at(1,17)
 	method ir(nuevaDireccion){
 			direccion = nuevaDireccion
 			self.moverse()
@@ -54,6 +57,9 @@ object personaje2 {
 	}
 	method image (){
 	    return "pepita.png"
+	}
+	method agarrar(unaComida){
+		unaComida.efectos(self)
 	}
 		method perder(){
 		game.removeVisual(self)

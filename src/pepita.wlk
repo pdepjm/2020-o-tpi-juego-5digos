@@ -2,6 +2,7 @@ import wollok.game.*
 import personaje.*
 import villano.*
 import estructuras.*
+import objectos.*
 
 object elJuegoDelCarpincho{
 	method iniciar() {
@@ -9,17 +10,20 @@ object elJuegoDelCarpincho{
 		self.agregarPersonajes()
 		self.configurarTeclas()
 		paredes.generar()
+		pescado.generar()
 		paredesDentro.generar()
 		villanos.generar()
 		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho()})
 		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho()})
+		game.onCollideDo(personaje,{unaComida => personaje.agarrar(unaComida)})
+		game.onCollideDo(personaje2,{unaComida => personaje2.agarrar(unaComida)})
 		game.start()
-	}
+	} 
 	method configurarJuego() {
 		game.title("Escape De los Carpinchos")
 		game.width(35)
 		game.height(19)
-		game.boardGround("suelo.png")
+		game.ground("sueloClaro.png")
 	}
 	method agregarPersonajes() {
 		game.addVisual(personaje)
@@ -37,5 +41,7 @@ object elJuegoDelCarpincho{
 		keyboard.right().onPressDo{personaje2.ir(derecha)}
 	}
 }
+
+
 
 

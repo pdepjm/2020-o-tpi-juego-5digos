@@ -35,10 +35,10 @@ object elJuegoDelCarpincho{
 		keyboard.left().onPressDo{personaje.ir(izquierda)}
 		keyboard.right().onPressDo{personaje.ir(derecha)}
 		
-		keyboard.up().onPressDo{personaje2.ir(arriba)}
-		keyboard.down().onPressDo{personaje2.ir(abajo)}
-		keyboard.left().onPressDo{personaje2.ir(izquierda)}
-		keyboard.right().onPressDo{personaje2.ir(derecha)}
+		keyboard.w().onPressDo{personaje2.ir(arriba)}
+		keyboard.s().onPressDo{personaje2.ir(abajo)}
+		keyboard.a().onPressDo{personaje2.ir(izquierda)}
+		keyboard.d().onPressDo{personaje2.ir(derecha)}
 	}
 }
 

@@ -8,12 +8,12 @@ class Villano{
 	method esAtravesable() = true
 
 	method chocasteCarpincho(){
-		game.say(self, "jaja pt")
+		game.say(self, "jaja, sentate breo")
 		personaje.perder()
 		personaje2.perder()
 		game.schedule(5000, {game.stop()})
 	} 
-	method image() ="jugador.png"
+	method image() ="ZombieDerecha.png"
 }
 
 object villanos{

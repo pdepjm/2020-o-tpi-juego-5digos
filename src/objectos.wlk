@@ -3,21 +3,30 @@ import pepita.*
 import estructuras.*
 import personaje.*
 
-class ObjetoEnJuego{
+class Objetos{
+	var property position
+	method esAtravesable()
+	method desaparecer(){
+		game.removeVisual(self)
+	}
 	method image()
-	method sufrirDanio(danio, agresor){}
-	method agarrarItem(item) {}
-	method esAtravesable() = true
 }
 
-class Mate inherits ObjetoEnJuego {
-	var property position
+class Comida inherits Objetos{
+	override method esAtravesable()= true
+	method efectos(jugador){
+		self.desaparecer()
+	}
+	override method image() ="fish.png"
 }
 
-class MuroDeMadera inherits ObjetoEnJuego {
-	var property position
-}
-
-class Combustible inherits ObjetoEnJuego {
-	var property position
+object pescado{
+		method generar(){
+		const lugar = [] 
+		lugar.add(new Position(x=5, y=7))
+		lugar.add(new Position(x=3, y=14))
+		lugar.add(new Position(x=17, y=2))
+		lugar.add(new Position(x=6, y=2))
+		lugar.forEach{p => game.addVisual(new Comida(position = p))}	
+	}
 }

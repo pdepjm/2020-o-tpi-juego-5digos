@@ -10,7 +10,9 @@ object elJuegoDelCarpincho{
 		self.configurarTeclas()
 		paredes.generar()
 		paredesDentro.generar()
+		villanos.generar()
 		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho()})
+		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho()})
 		game.start()
 	}
 	method configurarJuego() {
@@ -22,7 +24,6 @@ object elJuegoDelCarpincho{
 	method agregarPersonajes() {
 		game.addVisual(personaje)
 		game.addVisual(personaje2)
-		game.addVisual(villano1)
 	}
 	method configurarTeclas() {
 		keyboard.up().onPressDo{personaje.ir(arriba)}

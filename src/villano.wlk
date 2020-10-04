@@ -16,6 +16,13 @@ class Villano{
 	}
 }
 
-const villano1 = new Villano(position=game.at(10,3))
-const villano2 = new Villano(position=game.at(3,1))
-const villano3 = new Villano(position=game.at(4,2))
+object villanos{
+	method generar(){
+		const villanos = []
+		villanos.add(new Position(x=4, y=19))
+		villanos.add(new Position(x=12, y=5))
+		villanos.add(new Position(x=9, y=13))
+		villanos.add(new Position(x=10, y=8))
+		villanos.forEach{ p => game.addVisual(new Villano(position = p))}
+	}
+}

@@ -23,22 +23,18 @@ object personaje {
 	}
 }
 object izquierda{
-	method opuesta() = derecha
 	method image() = "CarpIzquierda.png"
 	method avanzar (position,cantidad) = position.left(cantidad)
 }
 object derecha{
-	method opuesta() = izquierda
 	method image() = "CarpDerecha.png"
 	method avanzar (position,cantidad) = position.right(cantidad)
 }
 object arriba{
-	method opuesta() = abajo
 	method image() = "CarpBack.png"
 	method avanzar (position,cantidad) = position.up(cantidad)
 }
 object abajo{
-	method opuesta() = arriba
 	method image() = "CarpFrente.png"
 	method avanzar (position,cantidad) = position.down(cantidad)
 }

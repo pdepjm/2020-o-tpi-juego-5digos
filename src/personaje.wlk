@@ -1,39 +1,65 @@
 import wollok.game.*
 import estructuras.*
-import villano.*
 
+object personaje {
+	var jugadorVivo = true
+	var property direccion = derecha
+	var property position = game.at(2,7)
+	method ir(nuevaDireccion){
+			direccion = nuevaDireccion
+			self.moverse()
+		}
+	method moverse(){
+		if(game.getObjectsIn(direccion.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
+			position = direccion.avanzar(position,1)
+		}
+	}
+	method image (){
+	    return direccion.image()
+	}
+	method perder(){
+		game.removeVisual(self)
+		jugadorVivo = false
+	}
+}
+object izquierda{
+	method opuesta() = derecha
+	method image() = "CarpIzquierda.png"
+	method avanzar (position,cantidad) = position.left(cantidad)
+}
+object derecha{
+	method opuesta() = izquierda
+	method image() = "CarpDerecha.png"
+	method avanzar (position,cantidad) = position.right(cantidad)
+}
+object arriba{
+	method opuesta() = abajo
+	method image() = "CarpBack.png"
+	method avanzar (position,cantidad) = position.up(cantidad)
+}
+object abajo{
+	method opuesta() = arriba
+	method image() = "CarpFrente.png"
+	method avanzar (position,cantidad) = position.down(cantidad)
+}
 
-
-object carpincho {
-    var property jugadorVivo = true
-	var property position = game.at(9,7)
-	var property image="CarpDerecha.png"
-	
-	method subir(){
-		self.moverseA(position.up(0.25))
-		self.image("CarpBack.png")
+object personaje2 {
+	var jugadorVivo = true
+	var property direccion = derecha
+	var property position = game.at(2,17)
+	method ir(nuevaDireccion){
+			direccion = nuevaDireccion
+			self.moverse()
+		}
+	method moverse(){
+		if(game.getObjectsIn(direccion.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
+			position = direccion.avanzar(position,1)
+		}
 	}
-	method bajar(){
-		self.moverseA(position.down(0.25))
-		self.image("CarpFrente.png")
+	method image (){
+	    return "pepita.png"
 	}
-	method izquierda(){
-		self.moverseA(position.left(0.25))
-		self.image("CarpIzquierda.png")
-	}
-	method derecha(){
-		self.moverseA(position.right(0.25))
-		self.image("CarpDerecha.png")
-	}
-	method moverseA(pos){
-		//falta poner reestriccion para los muros
-			position = pos
-	}
-	method agarrar(unMate){
-		unMate.desaparecer()
-	}
-	method perdiste(){
-		mapa.remover(position)
+		method perder(){
 		game.removeVisual(self)
 		jugadorVivo = false
 	}

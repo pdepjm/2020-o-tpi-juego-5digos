@@ -1,41 +1,39 @@
 import wollok.game.*
-import pepita.*
-import terreno.*
 import personaje.*
 import villano.*
 import estructuras.*
 
-object juegos{
+object elJuegoDelCarpincho{
 	method iniciar() {
 		self.configurarJuego()
 		self.agregarPersonajes()
-		self.agregarVillano()
 		self.configurarTeclas()
-		self.configurarAcciones()
+		paredes.generar()
+		paredesDentro.generar()
+		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho()})
 		game.start()
 	}
 	method configurarJuego() {
 		game.title("Escape De los Carpinchos")
-		game.width(30)
-		game.height(15)
-		game.boardGround("MapaBasicoJPG.jpg")
+		game.width(35)
+		game.height(19)
+		game.boardGround("suelo.png")
 	}
 	method agregarPersonajes() {
-		game.addVisualCharacter(carpincho)
-	}
-	method agregarVillano(){
+		game.addVisual(personaje)
+		game.addVisual(personaje2)
 		game.addVisual(villano1)
-		game.addVisual(villano2)
-		game.addVisual(villano3)
 	}
 	method configurarTeclas() {
-		keyboard.up().onPressDo({carpincho.subir()})
-		keyboard.down().onPressDo({carpincho.bajar()})
-		keyboard.left().onPressDo({carpincho.izquierda()})
-		keyboard.right().onPressDo({carpincho.derecha()})
-	}
-	method configurarAcciones() {
-		game.onCollideDo(carpincho, { visualColisionado => visualColisionado.chocasteCarpincho()})
+		keyboard.up().onPressDo{personaje.ir(arriba)}
+		keyboard.down().onPressDo{personaje.ir(abajo)}
+		keyboard.left().onPressDo{personaje.ir(izquierda)}
+		keyboard.right().onPressDo{personaje.ir(derecha)}
+		
+		keyboard.up().onPressDo{personaje2.ir(arriba)}
+		keyboard.down().onPressDo{personaje2.ir(abajo)}
+		keyboard.left().onPressDo{personaje2.ir(izquierda)}
+		keyboard.right().onPressDo{personaje2.ir(derecha)}
 	}
 }
 

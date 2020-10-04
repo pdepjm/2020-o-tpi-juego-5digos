@@ -1,22 +1,23 @@
 import wollok.game.*
 import pepita.*
-import juego.*
 import estructuras.*
+import personaje.*
 
-class Mate{
-	var property position
-	
-    method image(){
-    	return "muro.png"
-    }
-	method desaparecer(){
-		mapa.remover(position)
-		game.removeVisual(self)
-	}
-	method mostrar(){
-		game.addVisual(self)
-		mapa.agregar(position)
-	}
+class ObjetoEnJuego{
+	method image()
+	method sufrirDanio(danio, agresor){}
+	method agarrarItem(item) {}
+	method esAtravesable() = true
 }
 
+class Mate inherits ObjetoEnJuego {
+	var property position
+}
 
+class MuroDeMadera inherits ObjetoEnJuego {
+	var property position
+}
+
+class Combustible inherits ObjetoEnJuego {
+	var property position
+}

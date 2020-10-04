@@ -1,20 +1,21 @@
 import wollok.game.*
 import pepita.*
-import juego.*
 import personaje.*
 
 class Villano{
 	var property position
-	var property image="ZombieIzquierda.png"
+	method image() ="jugador.png"
 	
+	method esAtravesable() = true
+
 	method chocasteCarpincho(){
-//		terminar el juego
 		game.say(self, "jaja pt")
-		carpincho.perdiste()
-		game.schedule(5000, { game.stop()})
+		personaje.perder()
+		personaje2.perder()
+		game.schedule(5000, {game.stop()})
 	}
 }
 
-const villano1 = new Villano(position=game.at(2,7))
-const villano2 = new Villano(position=game.at(8,7))
-const villano3 = new Villano(position=game.at(10,9))
+const villano1 = new Villano(position=game.at(10,3))
+const villano2 = new Villano(position=game.at(3,1))
+const villano3 = new Villano(position=game.at(4,2))

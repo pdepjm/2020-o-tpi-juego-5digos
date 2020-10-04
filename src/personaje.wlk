@@ -25,6 +25,7 @@ object personaje {
 		jugadorVivo = false
 	}
 }
+
 object izquierda{
 	method image() = "CarpIzquierda.png"
 	method avanzar (position,cantidad) = position.left(cantidad)
@@ -56,7 +57,7 @@ object personaje2 {
 		}
 	}
 	method image (){
-	    return "pepita.png"
+	    return direccion.image()
 	}
 	method agarrar(unaComida){
 		unaComida.efectos(self)

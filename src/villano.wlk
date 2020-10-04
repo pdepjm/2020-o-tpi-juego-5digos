@@ -4,7 +4,6 @@ import personaje.*
 
 class Villano{
 	var property position
-	method image() ="jugador.png"
 	
 	method esAtravesable() = true
 
@@ -13,16 +12,18 @@ class Villano{
 		personaje.perder()
 		personaje2.perder()
 		game.schedule(5000, {game.stop()})
-	}
+	} 
+	method image() ="jugador.png"
 }
 
 object villanos{
 	method generar(){
 		const villanos = []
-		villanos.add(new Position(x=4, y=19))
-		villanos.add(new Position(x=12, y=5))
-		villanos.add(new Position(x=9, y=13))
+		villanos.add(new Position(x=4, y=16))
+		villanos.add(new Position(x=6, y=5))
+		villanos.add(new Position(x=15, y=13))
 		villanos.add(new Position(x=10, y=8))
 		villanos.forEach{ p => game.addVisual(new Villano(position = p))}
 	}
 }
+

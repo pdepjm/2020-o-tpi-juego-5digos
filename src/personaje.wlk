@@ -15,7 +15,7 @@ object personaje {
 		}
 	}
 	method image (){
-	    return direccion.image()
+	    return direccion.imagePersonaje()
 	}
 	method agarrar(unaComida){
 		unaComida.efectos(self)
@@ -27,26 +27,30 @@ object personaje {
 }
 
 object izquierda{
-	method image() = "CarpIzquierda.png"
+	method imagePersonaje() = "CarpIzquierda.png"
+	method imagePersonaje2() = "Carp2Izquierda.png"
 	method avanzar (position,cantidad) = position.left(cantidad)
 }
 object derecha{
-	method image() = "CarpDerecha.png"
+	method imagePersonaje() = "CarpDerecha.png"
+	method imagePersonaje2() = "Carp2Derecha.png"
 	method avanzar (position,cantidad) = position.right(cantidad)
 }
 object arriba{
-	method image() = "CarpBack.png"
+	method imagePersonaje() = "CarpBack.png"
+	method imagePersonaje2() = "Carp2Back.png"
 	method avanzar (position,cantidad) = position.up(cantidad)
 }
 object abajo{
-	method image() = "CarpFrente.png"
+	method imagePersonaje() = "CarpFrente.png"
+	method imagePersonaje2() = "Carp2Frente.png"
 	method avanzar (position,cantidad) = position.down(cantidad)
 }
  
 object personaje2 {
 	var jugadorVivo = true
 	var property direccion = derecha
-	var property position = game.at(1,17)
+	var property position = game.at(1,14)
 	method ir(nuevaDireccion){
 			direccion = nuevaDireccion
 			self.moverse()
@@ -57,7 +61,7 @@ object personaje2 {
 		}
 	}
 	method image (){
-	    return direccion.image()
+	    return direccion.imagePersonaje2()
 	}
 	method agarrar(unaComida){
 		unaComida.efectos(self)

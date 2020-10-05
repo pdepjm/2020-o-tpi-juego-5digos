@@ -4,7 +4,23 @@ import villano.*
 import estructuras.*
 import objectos.*
 
-object elJuegoDelCarpincho{
+object nivel0 {
+
+	var property position = game.origin()
+	var image = "menu.png"
+
+	method image() = image
+
+	method iniciar() {
+		game.addVisual(self)
+		keyboard.enter().onPressDo({ game.removeVisual(self)
+			nivel1.iniciar()
+		})
+	}
+
+}
+
+object nivel1{
 	method iniciar() {
 		self.configurarJuego()
 		self.agregarPersonajes()
@@ -17,14 +33,12 @@ object elJuegoDelCarpincho{
 		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho()})
 		game.onCollideDo(personaje,{unaComida => personaje.agarrar(unaComida)})
 		game.onCollideDo(personaje2,{unaComida => personaje2.agarrar(unaComida)})
-		game.start()
 	} 
+	
 	method configurarJuego() {
-		game.title("Escape De los Carpinchos")
-		game.width(35)
-		game.height(19)
 		game.ground("sueloClaro.png")
 	}
+		
 	method agregarPersonajes() {
 		game.addVisual(personaje)
 		game.addVisual(personaje2)
@@ -41,7 +55,3 @@ object elJuegoDelCarpincho{
 		keyboard.d().onPressDo{personaje2.ir(derecha)}
 	}
 }
-
-
-
-

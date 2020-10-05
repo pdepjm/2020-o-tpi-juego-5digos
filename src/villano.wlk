@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import niveles.*
 import personaje.*
 
 class Villano{
@@ -19,8 +19,8 @@ class Villano{
 object villanos{
 	method generar(){
 		const villanos = []
-		villanos.add(new Position(x=4, y=16))
-		villanos.add(new Position(x=6, y=5))
+		villanos.add(new Position(x=3, y=16))
+		villanos.add(new Position(x=5, y=5))
 		villanos.add(new Position(x=15, y=13))
 		villanos.add(new Position(x=10, y=8))
 		villanos.forEach{ p => game.addVisual(new Villano(position = p))}

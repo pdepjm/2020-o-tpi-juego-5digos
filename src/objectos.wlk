@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import niveles.*
 import estructuras.*
 import personaje.*
 

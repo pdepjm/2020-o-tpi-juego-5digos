@@ -1,7 +1,11 @@
 import wollok.game.*
-import pepita.*
+import niveles.*
 
 program game {
-	elJuegoDelCarpincho.iniciar()
+	game.title("CarpinchMayhem")
+	game.height(16)
+	game.width(27)
+	nivel0.iniciar()
+	
 	game.start()
 }

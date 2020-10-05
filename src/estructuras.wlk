@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import niveles.*
 import villano.*
 
 class Pared {
@@ -23,7 +23,6 @@ object paredes{
 		(0 .. ancho).forEach{ n => posParedes.add(new Position(x=n, y=largo))}
 		(0 .. largo).forEach{ n => posParedes.add(new Position(x=0, y=n))}
 		(0 .. largo).forEach{ n => posParedes.add(new Position(x=ancho, y=n))}
-		(1 .. ancho).forEach{ n => posParedes.add(new Position(x=n, y=largo/2))}
 		posParedes.forEach{ p => game.addVisual(new ParedInvisible(position = p))}	
 	}
 }
@@ -31,10 +30,18 @@ object paredes{
 object paredesDentro{
 	method generar(){
 	const posParedes = []
-		(1 .. 4).forEach{ n => posParedes.add(new Position(x=2, y=n))}
-		(6 .. 8).forEach{ n => posParedes.add(new Position(x=2, y=n))}
-		(11 .. 13).forEach{ n => posParedes.add(new Position(x=2, y=n))}
-		(15 .. 17).forEach{ n => posParedes.add(new Position(x=2, y=n))}
+		(4 .. 6).forEach{ n => posParedes.add(new Position(x=6, y=n))}
+		(4 .. 6).forEach{ n => posParedes.add(new Position(x=7, y=n))}
+		(4 .. 6).forEach{ n => posParedes.add(new Position(x=8, y=n))}
+		(9 .. 11).forEach{ n => posParedes.add(new Position(x=6, y=n))}
+		(9 .. 11).forEach{ n => posParedes.add(new Position(x=7, y=n))}
+		(9 .. 11).forEach{ n => posParedes.add(new Position(x=8, y=n))}
+		(4 .. 6).forEach{ n => posParedes.add(new Position(x=21, y=n))}
+		(4 .. 6).forEach{ n => posParedes.add(new Position(x=20, y=n))}
+		(4 .. 6).forEach{ n => posParedes.add(new Position(x=19, y=n))}
+		(9 .. 11).forEach{ n => posParedes.add(new Position(x=21, y=n))}
+		(9 .. 11).forEach{ n => posParedes.add(new Position(x=20, y=n))}
+		(9 .. 11).forEach{ n => posParedes.add(new Position(x=19, y=n))}
 		posParedes.forEach{ p => game.addVisual(new Pared(position = p))}	
 	}	
 }

@@ -5,10 +5,11 @@ import personaje.*
 
 class Villano{
 	var property position
+	var property direccion = abajo
 	
 	method esAtravesable() = true
 
-	method chocasteCarpincho(){
+	method chocasteCarpincho() {
 		game.say(self, "jaja, sentate breo")
 		personaje.perder()
 		personaje2.perder()
@@ -22,9 +23,16 @@ class Villano{
 		position = game.at(x,y) 
 	}*/ 
 	
-	method nuevaPosicion(){
-		position = position.down(1)
+	method ir(nuevaDireccion){
+			direccion = nuevaDireccion
+			self.moverse()
+		}
+	
+	method moverse(){
+		if(game.getObjectsIn(direccion.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
+			position = direccion.avanzar(position,1)
 	}
+}
 }
 
 object villanos{
@@ -51,7 +59,7 @@ object villanos{
 	    villanos.add(villano3)
 	    villanos.add(villano4)
 	    villanos.forEach{villano => game.addVisual(villano)}
-	    game.onTick(3000, "movimiento", {villanos.forEach({villano => villano.nuevaPosicion()}) }) 
+	    game.onTick(3000, "movimiento", {villanos.forEach({villano => villano.moverse()}) }) 
 	}
 
 }

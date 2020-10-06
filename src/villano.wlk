@@ -35,7 +35,7 @@ class Villano{
 }
 }
 
-object villanos{
+object generadorDeVillanos{
 	/* 
 	method generar(){
 		const posicionesDeVillanos = []

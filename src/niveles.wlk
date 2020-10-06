@@ -28,7 +28,7 @@ object nivel1{
 		paredes.generar()
 		pescado.generar()
 		paredesDentro.generar()
-		villanos.generar()
+		villanos.generarVillanos()
 		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho()})
 		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho()})
 		game.onCollideDo(personaje,{unaComida => personaje.agarrar(unaComida)})

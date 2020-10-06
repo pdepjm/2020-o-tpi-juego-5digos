@@ -6,6 +6,7 @@ import personaje.*
 class Villano{
 	var property position
 	var property direccion = abajo
+	var indice
 	
 	method esAtravesable() = true
 
@@ -22,7 +23,7 @@ class Villano{
 		const y = 0.randomUpTo(game.height()).truncate(0)
 		position = game.at(x,y) 
 	}*/ 
-	
+	/* 
 	method ir(nuevaDireccion){
 			direccion = nuevaDireccion
 			self.moverse()
@@ -32,7 +33,52 @@ class Villano{
 		if(game.getObjectsIn(direccion.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
 			position = direccion.avanzar(position,1)
 	}
-}
+}*/
+
+    method moverse(){
+    	indice = [1,2,3,4].anyOne()
+    	self.moverseHacia(indice)
+    }
+    
+    /*
+    method moverseHacia(unIndice){
+    	if (unIndice == 1){ position = position.up(1)}
+    	if (unIndice == 2) {position = position.down(1)}
+    	if (unIndice == 3) {position = position.left(1)}
+    	if (unIndice == 4) {position = position.right(1)}
+    }*/ 
+    
+    method moverseHacia(unIndice){
+    	if (unIndice == 1){ self.irHaciaArriba()}
+    	if (unIndice == 2) {self.irHaciaAbajo()}
+    	if (unIndice == 3) {self.irHaciaDerecha()}
+    	if (unIndice == 4) {self.irHaciaIzquierda()}
+    }
+    
+    method irHaciaArriba(){
+    	if(game.getObjectsIn(arriba.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
+    		position = arriba.avanzar(position,1)
+    	}
+    	
+    }
+    
+     method irHaciaAbajo(){
+    	if(game.getObjectsIn(abajo.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
+    		position = abajo.avanzar(position,1)
+    	}
+    }
+    
+    method irHaciaIzquierda(){
+    	if(game.getObjectsIn(izquierda.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
+    		position = izquierda.avanzar(position,1)
+    	}
+    }
+    
+    method irHaciaDerecha(){
+    	if(game.getObjectsIn(derecha.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
+    		position = derecha.avanzar(position,1)
+    	}
+    }
 }
 
 object generadorDeVillanos{
@@ -50,10 +96,10 @@ object generadorDeVillanos{
 	
 	method generarVillanos(){
 		const villanos = []
-		const villano1 = new Villano(position = game.at(3,9))
-		const villano2 = new Villano (position = game.at(5,5))
-	    const villano3 = new Villano (position = game.at(15,13))
-	    const villano4 = new Villano (position = game.at(10,8))	
+		const villano1 = new Villano(position = game.at(3,9), indice = 0)
+		const villano2 = new Villano (position = game.at(5,5), indice = 0)
+	    const villano3 = new Villano (position = game.at(15,13), indice = 0)
+	    const villano4 = new Villano (position = game.at(10,8), indice = 0)	
 	    villanos.add(villano1)
 	    villanos.add(villano2)
 	    villanos.add(villano3)

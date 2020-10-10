@@ -3,11 +3,12 @@ import personaje.*
 import villano.*
 import estructuras.*
 import objectos.*
+import movimientos.*
 
 object nivel0 {
 
 	var property position = game.origin()
-	var image = "menu.png"
+	const image = "menu.png"
 
 	method image() = image
 
@@ -17,7 +18,6 @@ object nivel0 {
 			nivel1.iniciar()
 		})
 	}
-
 }
 
 object nivel1{
@@ -29,8 +29,8 @@ object nivel1{
 		pescado.generar()
 		paredesDentro.generar()
 		generadorDeVillanos.generarVillanos()
-		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho()})
-		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho()})
+		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho(personaje)})
+		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho(personaje2)})
 		game.onCollideDo(personaje,{unaComida => personaje.agarrar(unaComida)})
 		game.onCollideDo(personaje2,{unaComida => personaje2.agarrar(unaComida)})
 	} 
@@ -40,18 +40,20 @@ object nivel1{
 	}
 		
 	method agregarPersonajes() {
+		personaje.iniciarP()
+		personaje2.iniciarP()
 		game.addVisual(personaje)
 		game.addVisual(personaje2)
 	}
 	method configurarTeclas() {
-		keyboard.up().onPressDo{personaje.ir(arriba)}
-		keyboard.down().onPressDo{personaje.ir(abajo)}
-		keyboard.left().onPressDo{personaje.ir(izquierda)}
-		keyboard.right().onPressDo{personaje.ir(derecha)}
-		
-		keyboard.w().onPressDo{personaje2.ir(arriba)}
-		keyboard.s().onPressDo{personaje2.ir(abajo)}
-		keyboard.a().onPressDo{personaje2.ir(izquierda)}
-		keyboard.d().onPressDo{personaje2.ir(derecha)}
+		keyboard.up().onPressDo{personaje.ir(carpinchoRickArriba)}
+		keyboard.down().onPressDo{personaje.ir(carpinchoRickAbajo)}
+		keyboard.left().onPressDo{personaje.ir(carpinchoRickIzquierda)}
+		keyboard.right().onPressDo{personaje.ir(carpinchoRickDerecha)}
+	
+		keyboard.w().onPressDo{personaje2.ir(carpinchoMortyArriba)}
+		keyboard.s().onPressDo{personaje2.ir(carpinchoMortyAbajo)}
+		keyboard.a().onPressDo{personaje2.ir(carpinchoMortyIzquierda)}
+		keyboard.d().onPressDo{personaje2.ir(carpinchoMortyDerecha)}
 	}
 }

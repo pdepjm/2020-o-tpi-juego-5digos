@@ -1,73 +1,61 @@
 import wollok.game.*
 import estructuras.*
+import movimientos.*
 
-object personaje {
+class Personaje{
 	var jugadorVivo = true
-	var property direccion = derecha
-	var property position = game.at(1,1)
+	var property vida = 100
+	var property direccion
+	var property position
+
 	method ir(nuevaDireccion){
-			direccion = nuevaDireccion
-			self.moverse()
-		}
+		direccion = nuevaDireccion
+		self.moverse()
+	}
+
+	method curarse(cura){
+		vida = (vida+cura).min(100)
+	}
+
+	method recivirDanio(danio){
+		vida = (vida-danio).max(0)
+		if(vida==0){self.perder()}
+		else {self.ir(direccion.opuesto())}
+	}
+
 	method moverse(){
-		if(game.getObjectsIn(direccion.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
+		if(self.todosObjetosAtravesables()){
 			position = direccion.avanzar(position,1)
 		}
 	}
-	method image (){
-	    return direccion.imagePersonaje()
-	}
+//-----------------	
+	method objetosDelante()=game.getObjectsIn(direccion.avanzar(position,1))
+	
+	method todosObjetosAtravesables() = self.objetosDelante().all({objeto => objeto.esAtravesable()})
+//-----------------	
+	method image ()=direccion.imagePersonaje()
+	
 	method agarrar(unaComida){
 		unaComida.efectos(self)
 	}
+	
 	method perder(){
 		game.removeVisual(self)
 		jugadorVivo = false
+		game.schedule(5000, {game.stop()})
 	}
 }
 
-object izquierda{
-	method imagePersonaje() = "CarpIzquierda.png"
-	method imagePersonaje2() = "Carp2Izquierda.png"
-	method avanzar (position,cantidad) = position.left(cantidad)
-}
-object derecha{
-	method imagePersonaje() = "CarpDerecha.png"
-	method imagePersonaje2() = "Carp2Derecha.png"
-	method avanzar (position,cantidad) = position.right(cantidad)
-}
-object arriba{
-	method imagePersonaje() = "CarpBack.png"
-	method imagePersonaje2() = "Carp2Back.png"
-	method avanzar (position,cantidad) = position.up(cantidad)
-}
-object abajo{
-	method imagePersonaje() = "CarpFrente.png"
-	method imagePersonaje2() = "Carp2Frente.png"
-	method avanzar (position,cantidad) = position.down(cantidad)
-}
- 
-object personaje2 {
-	var jugadorVivo = true
-	var property direccion = derecha
-	var property position = game.at(1,14)
-	method ir(nuevaDireccion){
-			direccion = nuevaDireccion
-			self.moverse()
-		}
-	method moverse(){
-		if(game.getObjectsIn(direccion.avanzar(position,1)).all({objeto => objeto.esAtravesable()})){
-			position = direccion.avanzar(position,1)
-		}
+object personaje inherits Personaje{
+	method iniciarP(){
+	self.position(game.at(1,1))
+	self.direccion(carpinchoRickDerecha)
 	}
-	method image (){
-	    return direccion.imagePersonaje2()
-	}
-	method agarrar(unaComida){
-		unaComida.efectos(self)
-	}
-		method perder(){
-		game.removeVisual(self)
-		jugadorVivo = false
+}
+
+object personaje2 inherits Personaje{
+	method iniciarP(){
+	self.position(game.at(1,14))
+	self.direccion(carpinchoMortyDerecha)
 	}
 }

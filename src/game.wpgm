@@ -2,9 +2,13 @@ import wollok.game.*
 import niveles.*
 
 program game {
+	
 	game.title("CarpinchMayhem")
+	
 	game.height(16)
+	
 	game.width(27)
+	
 	nivel0.iniciar()
 	
 	game.start()

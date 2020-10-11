@@ -59,3 +59,4 @@ object nivel1{
 		keyboard.d().onPressDo{personaje2.ir(carpinchoMortyDerecha)}
 	}
 }
+

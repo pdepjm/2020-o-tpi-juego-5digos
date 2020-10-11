@@ -3,60 +3,110 @@ import personaje.*
 import villano.*
 import estructuras.*
 import objectos.*
-import movimientos.*
 
-object nivel0 {
-
-	var property position = game.origin()
-	const image = "menu.png"
-
-	method image() = image
-
-	method iniciar() {
-		game.addVisual(self)
-		keyboard.enter().onPressDo({ game.removeVisual(self)
-			nivel1.iniciar()
-		})
-	}
+class Izquierda{
+	
+	method imagePersonaje()
+	
+	method avanzar (position,cantidad) = position.left(cantidad)
+}
+class Derecha{
+	method imagePersonaje()
+	
+	method avanzar (position,cantidad) = position.right(cantidad)
+}
+class Arriba{
+	
+	method imagePersonaje()
+	
+	method avanzar (position,cantidad) = position.up(cantidad)
+}
+class Abajo{
+	
+	method imagePersonaje()
+	
+	method avanzar (position,cantidad) = position.down(cantidad)
 }
 
-object nivel1{
-	method iniciar() {
-		self.configurarJuego()
-		self.agregarPersonajes()
-		self.configurarTeclas()
-		paredes.generar()
-		pescado.generar()
-		paredesDentro.generar()
-		caja.generar()
-		paredTrucha.generar()
-		generadorDeVillanos.generarVillanos()
-		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho(personaje)})
-		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho(personaje2)})
-		game.onCollideDo(personaje,{unaComida => personaje.agarrar(unaComida)})
-		game.onCollideDo(personaje2,{unaComida => personaje2.agarrar(unaComida)})
-	} 
+object carpinchoRickIzquierda inherits Izquierda{
 	
-	method configurarJuego() {
-		game.ground("sueloClaro.png")
-	}
-		
-	method agregarPersonajes() {
-		personaje.iniciarP()
-		personaje2.iniciarP()
-		game.addVisual(personaje)
-		game.addVisual(personaje2)
-	}
-	method configurarTeclas() {
-		keyboard.up().onPressDo{personaje.ir(carpinchoRickArriba)}
-		keyboard.down().onPressDo{personaje.ir(carpinchoRickAbajo)}
-		keyboard.left().onPressDo{personaje.ir(carpinchoRickIzquierda)}
-		keyboard.right().onPressDo{personaje.ir(carpinchoRickDerecha)}
+	method opuesto()= carpinchoRickDerecha
 	
-		keyboard.w().onPressDo{personaje2.ir(carpinchoMortyArriba)}
-		keyboard.s().onPressDo{personaje2.ir(carpinchoMortyAbajo)}
-		keyboard.a().onPressDo{personaje2.ir(carpinchoMortyIzquierda)}
-		keyboard.d().onPressDo{personaje2.ir(carpinchoMortyDerecha)}
-	}
+	override method imagePersonaje()="CarpIzquierda.png"
 }
+object carpinchoRickDerecha inherits Derecha{
+	
+	method opuesto()= carpinchoRickIzquierda
+	
+	override method imagePersonaje()="CarpDerecha.png"
+}
+object carpinchoRickArriba inherits Arriba{
+	
+	method opuesto()= carpinchoRickDerecha
+	
+	override method imagePersonaje()="CarpBack.png"
+}
+object carpinchoRickAbajo inherits Abajo{
+	
+	method opuesto()= carpinchoRickArriba
+	
+	override method imagePersonaje()="CarpFrente.png"
+}
+
+object carpinchoMortyIzquierda inherits Izquierda{
+	
+	method opuesto()= carpinchoMortyDerecha
+	
+	override method imagePersonaje()="Carp2Izquierda.png"
+}
+object carpinchoMortyDerecha inherits Derecha{
+	
+	method opuesto()= carpinchoMortyIzquierda
+	
+	override method imagePersonaje()="Carp2Derecha.png"
+}
+object carpinchoMortyArriba inherits Arriba{
+	
+	method opuesto()= carpinchoMortyAbajo
+	
+	override method imagePersonaje()="Carp2Back.png"
+}
+object carpinchoMortyAbajo inherits Abajo{
+	
+	method opuesto()= carpinchoMortyArriba
+	
+	override method imagePersonaje()="Carp2Frente.png"
+}
+
+object zombieBabosoIzquierda inherits Izquierda{
+	
+	method opuesto()= zombieBabosoDerecha
+	
+	override method imagePersonaje()="ZombieIzquierda.png"
+}
+object zombieBabosoDerecha inherits Derecha{
+	
+	method opuesto()= zombieBabosoIzquierda
+	
+	override method imagePersonaje()="ZombieDerecha.png"
+}
+object zombieBabosoArriba inherits Arriba{
+	
+	method opuesto()= zombieBabosoAbajo
+	
+	override method imagePersonaje()="ZombieBack.png"
+}
+object zombieBabosoAbajo inherits Abajo{
+	
+	method opuesto()= zombieBabosoArriba
+	
+	override method imagePersonaje()="ZombieFrente.png"
+}
+
+
+
+
+
+
+
 

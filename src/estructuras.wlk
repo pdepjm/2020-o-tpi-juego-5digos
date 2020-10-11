@@ -3,22 +3,41 @@ import niveles.*
 import villano.*
 import objectos.*
 
-class Pared {
+
+class Paredes{
 	
 	var property position
 	
 	method esAtravesable() = false
 	
-	method image () = "muroLadrillo.png"
+	method image ()
+	
+}
+
+
+class ParedLadrillo inherits Paredes {
+	
+	override method image () = "muroLadrillo.png"
 }
  
-class ParedInvisible {
+class ParedExterior inherits Paredes {
+
+	override method image () = "muroExterior.png"
+}
+
+class ParedTrucha inherits Paredes {
 	
-	var property position
+	override method image () = "paredTrucho.png"
 	
-	method esAtravesable() = false
+	method recivirDanio(){
+		
+		self.desaparecer()
+			
+		}
 	
-	method image () = "muroExterior.png"
+	method desaparecer(){
+			game.removeVisual(self)
+		}
 }
 
 class Cajas{
@@ -30,8 +49,6 @@ class Cajas{
 	method image () = "caja.png"
 	
 	method recivirDanio(){
-		
-		self.esAtravesable(true)
 		
 		self.desaparecer()
 		
@@ -48,16 +65,6 @@ class Cajas{
 	}
 	
 }
-
-class ParedTrucha {
-	
-	var property position
-	
-	method esAtravesable() = false
-	
-	method image () = "paredTrucho.png"
-}
-
 
 object caja{
 	
@@ -80,21 +87,31 @@ object caja{
 		(1 .. 1).forEach{ n => cajas.add(new Position(x=25 , y=n))}
 		
 		(8 .. 8).forEach{ n => cajas.add(new Position(x=n, y=4))}
+		
 		(8 .. 8).forEach{ n => cajas.add(new Position(x=n, y=11))}
+		
 		(16 .. 16).forEach{ n => cajas.add(new Position(x=n, y=4))}
+		
 		(16 .. 16).forEach{ n => cajas.add(new Position(x=n, y=11))}
 		
 		(10 .. 10).forEach{ n => cajas.add(new Position(x=n, y=1))}
+		
 		(10 .. 10).forEach{ n => cajas.add(new Position(x=n, y=14))}
+		
 		(10 .. 10).forEach{ n => cajas.add(new Position(x=n, y=3))}
+		
 		(10 .. 10).forEach{ n => cajas.add(new Position(x=n, y=12))}
 		
 		(20 .. 20).forEach{ n => cajas.add(new Position(x=n , y=1))}
+		
 		(20 .. 20).forEach{ n => cajas.add(new Position(x=n , y=14))}
 		
 		(22 .. 22).forEach{ n => cajas.add(new Position(x=n , y=1))}
+		
 		(22 .. 22).forEach{ n => cajas.add(new Position(x=n , y=14))}
+		
 		(17 .. 17).forEach{ n => cajas.add(new Position(x=n , y=1))}
+		
 		(17 .. 17).forEach{ n => cajas.add(new Position(x=n , y=14))}
 		
 		cajas.forEach{ p => game.addVisual(new Cajas(position = p))}	
@@ -192,7 +209,7 @@ object paredesDentro{
 		
 		(12 .. 14).forEach{ n => posParedes.add(new Position(x=16, y=n))}
 		
-		posParedes.forEach{ p => game.addVisual(new Pared(position = p))}	
+		posParedes.forEach{ p => game.addVisual(new ParedLadrillo(position = p))}	
 	}
 }
 
@@ -214,6 +231,7 @@ object paredes{
 		
 		(0 .. largo).forEach{ n => posParedes.add(new Position(x=ancho, y=n))}
 		
-		posParedes.forEach{ p => game.addVisual(new ParedInvisible(position = p))}	
+		posParedes.forEach{ p => game.addVisual(new ParedExterior(position = p))}	
 	}
 }
+

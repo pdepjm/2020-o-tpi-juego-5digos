@@ -28,6 +28,7 @@ class Personaje{
 			position = direccion.avanzar(position,1)
 		}
 	}
+	
 //-----------------	
 	method objetosDelante()=game.getObjectsIn(direccion.avanzar(position,1))
 	
@@ -38,6 +39,7 @@ class Personaje{
 	method agarrar(unaComida){
 		unaComida.efectos(self)
 	}
+	
 	
 	method perder(){
 		game.removeVisual(self)
@@ -59,3 +61,4 @@ object personaje2 inherits Personaje{
 	self.direccion(carpinchoMortyDerecha)
 	}
 }
+

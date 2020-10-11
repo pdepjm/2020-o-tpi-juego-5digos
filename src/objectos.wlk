@@ -3,13 +3,14 @@ import niveles.*
 import estructuras.*
 import personaje.*
 
-class Objetos{
+class Objetos {
 	
 	var property position
 	
-	method esAtravesable()
+	method esAtravesable() = true
 	
 	method desaparecer(){
+		
 		game.removeVisual(self)
 	}
 	
@@ -17,11 +18,9 @@ class Objetos{
 
 }
 
-class Comida inherits Objetos{
+class Comida inherits Objetos {
 	
-	var property cura = 50
-	
-	override method esAtravesable()= true
+	var property cura = 30
 	
 	method curarPersonaje(unPersonaje){
 		
@@ -34,15 +33,19 @@ class Comida inherits Objetos{
 		
 		self.desaparecer()
 	}
-	
-	override method image() ="fish.png"
 }
 
-object pescado{
+class Pescado inherits Comida{//habria q cambiarlo a pasto
+	
+	override method image() ="fish.png"
+	
+}
+
+object pescado inherits Pescado{
 	
 	method generaUno(nuevaPosicion){
 		
-	game.addVisual(new Comida(position = nuevaPosicion))
+	    game.addVisual(new Pescado(position = nuevaPosicion))
 	
 	}
 	
@@ -58,16 +61,22 @@ object pescado{
 	
 	lugar.add(new Position(x=6, y=2))
 	
-	lugar.forEach{p => game.addVisual(new Comida(position = p))}	
+	lugar.forEach{p => game.addVisual(new Pescado(position = p))}	
 	}
 	
 }
 
+class Mate inherits Comida{
+	
+	//falta imagen
+
+}
+
 object mate{
 	
-		method generar(){
+	method generar(){
 			
-		const lugar = [] 
+	const lugar = [] 
 		
 		lugar.add(new Position(x=5, y=7))
 		
@@ -77,8 +86,20 @@ object mate{
 		
 		lugar.add(new Position(x=6, y=2))
 		
-		lugar.forEach{p => game.addVisual(new Comida(position = p))}	
+		lugar.forEach{p => game.addVisual(new Pescado(position = p))}	
 	}
+}
+
+class Balas inherits Objetos{
+	
+	//falta imagen
+
+}
+
+class Llaves inherits Objetos{
+	
+	//falta imagen
+
 }
 
 

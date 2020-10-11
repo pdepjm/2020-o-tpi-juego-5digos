@@ -61,4 +61,3 @@ object personaje2 inherits Personaje{
 	self.direccion(carpinchoMortyDerecha)
 	}
 }
-

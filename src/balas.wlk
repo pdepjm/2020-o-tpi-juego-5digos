@@ -44,5 +44,3 @@ import objectos.*
 //	method todosObjetosAtravesables() = self.objetosDelante().all({objeto => objeto.esAtravesable()})
 //
 //}
-
-

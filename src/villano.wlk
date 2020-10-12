@@ -3,7 +3,6 @@ import niveles.*
 import personaje.*
 import movimientos.*
 
-
 class Villano{
 	
 	var property position
@@ -126,5 +125,3 @@ object generadorDeVillanos{
 	}
 
 }
-
-

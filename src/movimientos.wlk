@@ -102,10 +102,3 @@ object zombieBabosoAbajo inherits Abajo{
 	
 	override method imagePersonaje()="ZombieFrente.png"
 }
-
-
-
-
-
-
-

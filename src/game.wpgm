@@ -6,7 +6,7 @@ program game {
 	
 	game.title("CarpinchMayhem")
 	
-	game.height(16)
+	game.height(18)
 	
 	game.width(27)
 	

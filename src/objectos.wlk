@@ -101,11 +101,3 @@ class Llaves inherits Objetos{
 	//falta imagen
 
 }
-
-
-
-
-
-
-
-

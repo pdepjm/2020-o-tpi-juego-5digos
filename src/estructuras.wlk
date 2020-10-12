@@ -3,7 +3,6 @@ import niveles.*
 import villano.*
 import objectos.*
 
-
 class Paredes{
 	
 	var property position
@@ -219,7 +218,7 @@ object paredes{
 		
 		const ancho = game.width() - 1
 		
-		const largo = game.height() - 1
+		const largo = game.height() - 3
 		
 		const posParedes = []
 		
@@ -234,4 +233,3 @@ object paredes{
 		posParedes.forEach{ p => game.addVisual(new ParedExterior(position = p))}	
 	}
 }
-

@@ -40,7 +40,6 @@ class Personaje{
 		unaComida.efectos(self)
 	}
 	
-	
 	method perder(){
 		game.removeVisual(self)
 		jugadorVivo = false
@@ -57,7 +56,7 @@ object personaje inherits Personaje{
 
 object personaje2 inherits Personaje{
 	method iniciarP(){
-	self.position(game.at(1,14))
+	self.position(game.at(1,17))
 	self.direccion(carpinchoMortyDerecha)
 	}
 }

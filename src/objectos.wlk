@@ -37,7 +37,7 @@ class Comida inherits Objetos {
 
 class Pescado inherits Comida{//habria q cambiarlo a pasto
 	
-	override method image() ="fish.png"
+	override method image() ="pasto.png"
 	
 }
 

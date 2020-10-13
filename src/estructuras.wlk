@@ -60,7 +60,7 @@ class Cajas{
 		}
 		
 	method spawnearObjeto(){
-		pescado.generaUno(position)
+		pasto.generaUno(position)
 	}
 	
 }

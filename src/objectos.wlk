@@ -33,6 +33,11 @@ class Comida inherits Objetos {
 		
 		self.desaparecer()
 	}
+			
+	method chocasteCarpincho(unPersonaje){
+		
+		self.efectos(unPersonaje)
+	}
 }
 
 class PowerUp inherits Objetos{
@@ -49,6 +54,11 @@ class PowerUp inherits Objetos{
 		self.curarPersonaje(unPersonaje)
 		
 		self.desaparecer()
+	}
+	
+	method chocasteCarpincho(unPersonaje){
+		
+		self.efectos(unPersonaje)
 	}
 }
 

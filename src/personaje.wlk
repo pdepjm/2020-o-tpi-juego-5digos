@@ -58,7 +58,7 @@ object personaje inherits Personaje{
 
 object personaje2 inherits Personaje{
 	method iniciarP(){
-	self.position(game.at(1,17))
+	self.position(game.at(1,14))
 	self.direccion(carpinchoMortyDerecha)
 	}
 }

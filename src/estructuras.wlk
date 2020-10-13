@@ -28,7 +28,7 @@ class ParedTrucha inherits Paredes {
 	
 	override method image () = "paredTrucho.png"
 	
-	method recivirDanio(){
+	method recibirDanio(){
 		
 		self.desaparecer()
 			
@@ -47,7 +47,7 @@ class Cajas{
 	
 	method image () = "caja.png"
 	
-	method recivirDanio(){
+	method recibirDanio(){
 		
 		self.desaparecer()
 		

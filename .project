@@ -32,13 +32,6 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.uqbar.project.wollok.wollokNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>assets/paredTrucho.png</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/paredTrucho.png</locationURI>
-		</link>
-	</linkedResources>
 	<variableList>
 		<variable>
 			<name>ZombieIzquierda</name>

@@ -17,7 +17,7 @@ class Personaje{
 		vida = (vida+cura).min(100)
 	}
 
-	method recivirDanio(danio){
+	method recibirDanio(danio){
 		vida = (vida-danio).max(0)
 		if(vida==0){self.perder()}
 		else {self.ir(direccion.opuesto())}

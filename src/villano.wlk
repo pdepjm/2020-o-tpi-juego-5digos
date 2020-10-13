@@ -15,7 +15,7 @@ class Villano{
 	
 	method esAtravesable() = true
 	
-	method recivirDanio(danioBala){
+	method recibirDanio(danioBala){
 		
 		vida = (vida-danioBala).max(0)
 		
@@ -37,7 +37,7 @@ class Villano{
 	
 	method hacerDanio(unPersonaje){
 		
-		unPersonaje.recivirDanio(danio)
+		unPersonaje.recibirDanio(danio)
 	}
 
 	method image() ="ZombieDerecha.png"

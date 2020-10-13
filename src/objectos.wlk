@@ -103,7 +103,7 @@ object mate{
 		
 		lugar.add(new Position(x=6, y=8))
 		
-		lugar.add(new Position(x=4, y=15))
+		lugar.add(new Position(x=4, y=14))
 		
 		lugar.add(new Position(x=18, y=3))
 		

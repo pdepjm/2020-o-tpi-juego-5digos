@@ -218,7 +218,7 @@ object paredes{
 		
 		const ancho = game.width() - 1
 		
-		const largo = game.height() - 3
+		const largo = game.height() - 1
 		
 		const posParedes = []
 		

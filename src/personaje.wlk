@@ -29,6 +29,8 @@ class Personaje{
 		}
 	}
 	
+	method esAtravesable() = true
+	
 //-----------------	
 	method objetosDelante()=game.getObjectsIn(direccion.avanzar(position,1))
 	

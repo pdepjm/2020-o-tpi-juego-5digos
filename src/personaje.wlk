@@ -31,6 +31,10 @@ class Personaje{
 	
 	method esAtravesable() = true
 	
+	method chocasteCarpincho(unPersonaje){}
+	
+	method efectos(unPersonaje){}
+	
 //-----------------	
 	method objetosDelante()=game.getObjectsIn(direccion.avanzar(position,1))
 	

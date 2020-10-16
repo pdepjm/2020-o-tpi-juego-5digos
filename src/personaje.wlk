@@ -12,14 +12,30 @@ class Personaje{
 		direccion = nuevaDireccion
 		self.moverse()
 	}
-
+	
+	method imagenVida(){
+		if (vida == 99){
+			barraDeVida.recorrerListaVidas(0)
+		}
+		else if (vida == 66){
+			barraDeVida.recorrerListaVidas(1)
+		}
+		else if (vida == 33){
+			barraDeVida.recorrerListaVidas(2)
+		}
+		else if (vida == 0){
+			barraDeVida.recorrerListaVidas(3)
+		}
+	}
+	
 	method curarse(cura){
 		vida = (vida+cura).min(99)
+		self.imagenVida()
 	}
 
 	method recibirDanio(danio){
 		vida = (vida-danio).max(0)
-		barraDeVida.chocarConZombie()
+		self.imagenVida()
 		if(vida==0){self.perder()}
 		else {self.ir(direccion.opuesto())}
 	}
@@ -53,9 +69,6 @@ class Personaje{
 		game.schedule(5000, {game.stop()})
 	}
 	/* */
-	method barraAlChocarConZombie(){
-		
-	} 
 }
 
 object personaje inherits Personaje{
@@ -70,37 +83,20 @@ object personaje2 inherits Personaje{
 	self.position(game.at(1,14))
 	self.direccion(carpinchoMortyDerecha)
 	}
-	
-
-	}
+}
 
 
 object barraDeVida {
 	
-	const property position = game.at(1,4)
+	const property position = game.at(4,15)
 	const property imagenesVidas = ["vida99.png", "vida66.png", "vida33.png", "vida0.png"]
-	var indice = 0
-	var property imagenDeVida = imagenesVidas.get(indice)
+	var  imagenDeVida = imagenesVidas.get(0)
 	
 	method esAtravesable() = false
 	
 	method image() = imagenDeVida
-		
-	method chocarConZombie(){
-		indice = (indice +1).min(3)	
-		imagenDeVida = imagenesVidas.get(indice)
-	}
 	
-	method generar(){
-		game.addVisual(self)
+	method recorrerListaVidas(unIndice){
+		imagenDeVida = imagenesVidas.get(unIndice)
 	}
-	
 }
-
-
-	
-	
-
-
-
-

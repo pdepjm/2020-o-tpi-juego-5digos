@@ -32,7 +32,7 @@ object nivel1{
 		caja.generar()
 		paredTrucha.generar()
 		generadorDeVillanos.generarVillanos()
-		barraDeVida.generar()
+		game.addVisual(barraDeVida)
 		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho(personaje)})
 		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho(personaje2)})
 		game.onCollideDo(personaje,{unaComida => personaje.agarrar(unaComida)})

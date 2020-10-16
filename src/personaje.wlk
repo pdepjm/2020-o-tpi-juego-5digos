@@ -4,7 +4,7 @@ import movimientos.*
 
 class Personaje{
 	var jugadorVivo = true
-	var property vida = 100
+	var property vida = 99
 	var property direccion
 	var property position
 
@@ -14,11 +14,12 @@ class Personaje{
 	}
 
 	method curarse(cura){
-		vida = (vida+cura).min(100)
+		vida = (vida+cura).min(99)
 	}
 
 	method recibirDanio(danio){
 		vida = (vida-danio).max(0)
+		barraDeVida.chocarConZombie()
 		if(vida==0){self.perder()}
 		else {self.ir(direccion.opuesto())}
 	}
@@ -51,6 +52,10 @@ class Personaje{
 		jugadorVivo = false
 		game.schedule(5000, {game.stop()})
 	}
+	/* */
+	method barraAlChocarConZombie(){
+		
+	} 
 }
 
 object personaje inherits Personaje{
@@ -65,4 +70,37 @@ object personaje2 inherits Personaje{
 	self.position(game.at(1,14))
 	self.direccion(carpinchoMortyDerecha)
 	}
+	
+
+	}
+
+
+object barraDeVida {
+	
+	const property position = game.at(1,4)
+	const property imagenesVidas = ["vida99.png", "vida66.png", "vida33.png", "vida0.png"]
+	var indice = 0
+	var property imagenDeVida = imagenesVidas.get(indice)
+	
+	method esAtravesable() = false
+	
+	method image() = imagenDeVida
+		
+	method chocarConZombie(){
+		indice = (indice +1).min(3)	
+		imagenDeVida = imagenesVidas.get(indice)
+	}
+	
+	method generar(){
+		game.addVisual(self)
+	}
+	
 }
+
+
+	
+	
+
+
+
+

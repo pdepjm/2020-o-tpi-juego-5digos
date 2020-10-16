@@ -20,7 +20,7 @@ class Objetos {
 
 class Comida inherits Objetos {
 	
-	var property cura = 30
+	var property cura = 33
 	
 	method curarPersonaje(unPersonaje){
 		

@@ -9,7 +9,7 @@ class Villano{
 	
 	var property vida = 100
 	
-	var property danio = 45
+	var property danio = 33
 	
 	var nuevaDireccion
 	

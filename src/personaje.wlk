@@ -15,16 +15,16 @@ class Personaje{
 	
 	method imagenVida(){
 		if (vida == 99){
-			barraDeVida.recorrerListaVidas(0)
+			barraVidaP1.recorrerListaVidas(0)
 		}
 		else if (vida == 66){
-			barraDeVida.recorrerListaVidas(1)
+			barraVidaP1.recorrerListaVidas(1)
 		}
 		else if (vida == 33){
-			barraDeVida.recorrerListaVidas(2)
+			barraVidaP1.recorrerListaVidas(2)
 		}
 		else if (vida == 0){
-			barraDeVida.recorrerListaVidas(3)
+			barraVidaP1.recorrerListaVidas(3)
 		}
 	}
 	
@@ -85,12 +85,10 @@ object personaje2 inherits Personaje{
 	}
 }
 
-
-object barraDeVida {
-	
-	const property position = game.at(4,15)
+class BarrasDeVida{
 	const property imagenesVidas = ["vida99.png", "vida66.png", "vida33.png", "vida0.png"]
 	var  imagenDeVida = imagenesVidas.get(0)
+	var property position
 	
 	method esAtravesable() = false
 	
@@ -98,5 +96,17 @@ object barraDeVida {
 	
 	method recorrerListaVidas(unIndice){
 		imagenDeVida = imagenesVidas.get(unIndice)
+	}
+}
+
+object barraVidaP1 inherits BarrasDeVida{
+	method iniciarB(){
+		self.position(game.at(4,15))
+	}
+}
+
+object barraVidaP2 inherits BarrasDeVida{
+	method iniciarB(){
+		self.position(game.at(23,15))
 	}
 }

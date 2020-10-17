@@ -2,6 +2,7 @@ import wollok.game.*
 import niveles.*
 import personaje.*
 import movimientos.*
+import balas.*
 
 class Villano{
 	
@@ -59,7 +60,19 @@ class Villano{
     method objetosDelante()=game.getObjectsIn(nuevaDireccion.avanzar(position,1))
 	
     method todosObjetosAtravesables() = self.objetosDelante().all({objeto => objeto.esAtravesable()})
+    
+   
 //--------------------------
+    method conlisionConBala(){
+    	game.say(self, "mierda, me dieron")
+    	self.seMuere()
+    	
+    }
+    
+    method seMuere(){
+    	game.schedule(1000, {game.removeVisual(self)})
+    }
+
 }
 
 object generadorDeVillanos{

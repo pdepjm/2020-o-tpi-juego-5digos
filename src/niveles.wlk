@@ -4,6 +4,7 @@ import villano.*
 import estructuras.*
 import objectos.*
 import movimientos.*
+import balas.*
 
 object nivel0 {
 
@@ -62,6 +63,11 @@ object nivel1{
 		keyboard.s().onPressDo{personaje2.ir(carpinchoMortyAbajo)}
 		keyboard.a().onPressDo{personaje2.ir(carpinchoMortyIzquierda)}
 		keyboard.d().onPressDo{personaje2.ir(carpinchoMortyDerecha)}
+		
+		keyboard.f().onPressDo{personaje.disparar()}
+		keyboard.p().onPressDo{personaje2.disparar()}
+		
+		}
 	}
-}
+
 

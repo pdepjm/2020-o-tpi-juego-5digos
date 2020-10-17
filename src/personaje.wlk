@@ -1,6 +1,7 @@
 import wollok.game.*
 import estructuras.*
 import movimientos.*
+import balas.*
 
 class Personaje{
 	var jugadorVivo = true
@@ -69,6 +70,11 @@ class Personaje{
 		game.schedule(5000, {game.stop()})
 	}
 	/* */
+	
+	method disparar(){
+		const bala = new Balas()
+		bala.generarDisparo()
+	}
 }
 
 object personaje inherits Personaje{

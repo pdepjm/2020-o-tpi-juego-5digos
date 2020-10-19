@@ -14,29 +14,12 @@ class Personaje{
 		self.moverse()
 	}
 	
-	method imagenVida(){
-		if (vida == 99){
-			barraVidaP1.recorrerListaVidas(0)
-		}
-		else if (vida == 66){
-			barraVidaP1.recorrerListaVidas(1)
-		}
-		else if (vida == 33){
-			barraVidaP1.recorrerListaVidas(2)
-		}
-		else if (vida == 0){
-			barraVidaP1.recorrerListaVidas(3)
-		}
-	}
-	
 	method curarse(cura){
 		vida = (vida+cura).min(99)
-		self.imagenVida()
 	}
 
 	method recibirDanio(danio){
 		vida = (vida-danio).max(0)
-		self.imagenVida()
 		if(vida==0){self.perder()}
 		else {self.ir(direccion.opuesto())}
 	}
@@ -78,16 +61,46 @@ class Personaje{
 }
 
 object personaje inherits Personaje{
+	var property nroJugador= 1
 	method iniciarP(){
 	self.position(game.at(1,1))
 	self.direccion(carpinchoRickDerecha)
 	}
+	method imagenVida(){
+		if (vida == 99){
+			barraVidaP1.recorrerListaVidas(0)
+		}
+		else if (vida == 66){
+			barraVidaP1.recorrerListaVidas(1)
+		}
+		else if (vida == 33){
+			barraVidaP1.recorrerListaVidas(2)
+		}
+		else if (vida == 0){
+			barraVidaP1.recorrerListaVidas(3)
+		}
+	}
 }
 
 object personaje2 inherits Personaje{
+	var property nroJugador= 2
 	method iniciarP(){
 	self.position(game.at(1,14))
 	self.direccion(carpinchoMortyDerecha)
+	}
+	method imagenVida(){
+		if (vida == 99){
+			barraVidaP2.recorrerListaVidas(0)
+		}
+		else if (vida == 66){
+			barraVidaP2.recorrerListaVidas(1)
+		}
+		else if (vida == 33){
+			barraVidaP2.recorrerListaVidas(2)
+		}
+		else if (vida == 0){
+			barraVidaP2.recorrerListaVidas(3)
+		}
 	}
 }
 

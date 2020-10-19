@@ -39,6 +39,7 @@ class Villano{
 	method hacerDanio(unPersonaje){
 		
 		unPersonaje.recibirDanio(danio)
+		unPersonaje.imagenVida()
 	}
 
 	method image() ="ZombieDerecha.png"

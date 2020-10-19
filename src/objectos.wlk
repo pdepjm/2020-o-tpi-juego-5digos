@@ -23,7 +23,6 @@ class Comida inherits Objetos {
 	var property cura = 33
 	
 	method curarPersonaje(unPersonaje){
-		
 		unPersonaje.curarse(cura)
 	}
 	
@@ -31,11 +30,13 @@ class Comida inherits Objetos {
 		
 		self.curarPersonaje(unPersonaje)
 		
+		unPersonaje.imagenVida()
+		
 		self.desaparecer()
 	}
 			
 	method chocasteCarpincho(unPersonaje){
-		
+
 		self.efectos(unPersonaje)
 	}
 }
@@ -52,6 +53,8 @@ class PowerUp inherits Objetos{
 	method efectos(unPersonaje){
 		
 		self.curarPersonaje(unPersonaje)
+		
+		unPersonaje.imagenVida()
 		
 		self.desaparecer()
 	}

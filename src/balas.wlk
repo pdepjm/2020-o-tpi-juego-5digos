@@ -45,18 +45,18 @@ import objectos.*
 //
 //}
 
-
+/* 
 
  class Balas{
 	var property image = "fish.png"
 //	var property cantidad=30
 //	var danio = 45
-	var property direccion = personaje.direccion()
-	var property position = personaje.position()
-
+	var property direccion 
+	var property position 
+	
 	method esAtravesable() = false
 	
-	method generarDisparo(){
+	method generarDisparo(persona){
 	    
 		game.addVisual(self)
   	    self.avanzarHastaChocar()
@@ -128,7 +128,10 @@ import objectos.*
 			})
 		game.onTick(10, "disparo", { bala.seguirCurso()})
 	}
- */}
-
+ }
+ 
+ */
+ 
+ 
 
 

@@ -2,6 +2,7 @@ import wollok.game.*
 import niveles.*
 import estructuras.*
 import personaje.*
+import balas.*
 
 class Objetos {
 	
@@ -128,12 +129,44 @@ object mate{
 
 class Balas inherits Objetos{
 	
-	//falta imagen
-
-}
-
-class Llaves inherits Objetos{
+	var property direccion
+	override method image() = "fish.png"
+	
+	
+	method seguirCurso(){
+		
+		position = (direccion.cambioABala() ).avanzar(position, 1)
+	}
+	
+	
+	method desaparecer(){
+		game.removeVisual(self)
+	}
+	
 	
 	//falta imagen
 
 }
+
+object balas{
+ 	method generarBalas(persona){
+ 		var bala = new Balas (position = persona.position(), direccion = persona.direccion())
+ 		game.addVisual(bala)
+ 		game.onTick(1000, "disparo" , {bala.seguirCurso()})
+ 		game.onCollideDo(bala, { colicionado =>
+			colicionado.colicionConBala(bala)
+			 
+			})
+ 		
+ 	}
+ }
+
+
+
+
+/*
+class Llaves inherits Objetos{
+	
+	//falta imagen
+
+}*/

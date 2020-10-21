@@ -11,6 +11,8 @@ class Paredes{
 	
 	method image ()
 	
+	method colisionConBala(bala) {bala.desaparecer()}
+	
 }
 
 
@@ -27,6 +29,11 @@ class ParedExterior inherits Paredes {
 class ParedTrucha inherits Paredes {
 	
 	override method image () = "paredTrucho.png"
+	
+	override method colisionConBala(bala) {
+		bala.desaparecer() //ver si se puede simplificar
+		self.recibirDanio()
+	}
 	
 	method recibirDanio(){
 		

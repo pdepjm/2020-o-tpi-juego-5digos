@@ -20,6 +20,8 @@ class Balas inherits Objetos{
 		game.removeVisual(self)
 	}
 	
+	method efectos(unPersonaje){}
+	
 	//*Falta assets de balas
 	//falta imagen
 

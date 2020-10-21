@@ -16,6 +16,8 @@ class Objetos {
 	}
 	
 	method image()
+	
+	method colisionConBala(bala) {}//Cambiar despues segun convenga
 
 }
 
@@ -127,39 +129,7 @@ object mate{
 	}
 }
 
-class Balas inherits Objetos{
-	
-	var property direccion
-	override method image() = "fish.png"
-	
-	
-	method seguirCurso(){
-		
-		position = (direccion.cambioABala() ).avanzar(position, 1)
-	}
-	
-	
-	method desaparecer(){
-		game.removeVisual(self)
-	}
-	
-	
-	//falta imagen
 
-}
-
-object balas{
- 	method generarBalas(persona){
- 		var bala = new Balas (position = persona.position(), direccion = persona.direccion())
- 		game.addVisual(bala)
- 		game.onTick(1000, "disparo" , {bala.seguirCurso()})
- 		game.onCollideDo(bala, { colicionado =>
-			colicionado.colicionConBala(bala)
-			 
-			})
- 		
- 	}
- }
 
 
 

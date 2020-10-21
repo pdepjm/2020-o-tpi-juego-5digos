@@ -4,6 +4,52 @@ import villano.*
 import estructuras.*
 import objectos.*
 
+class Balas inherits Objetos{
+	
+	var property direccion
+	override method image() = "fish.png"
+	
+	
+	method seguirCurso(){
+		
+		position = (direccion.cambioABala() ).avanzar(position, 1)
+	}
+	
+	method desaparecer(){
+		game.removeVisual(self)
+	}
+	
+	
+	//falta imagen
+
+}
+
+object generadorDeBalas{
+ 	method generarBalas(persona){
+ 		var bala = new Balas (position = persona.position(), direccion = persona.direccion())
+ 		game.addVisual(bala)
+ 		game.onTick(300, "disparo" , {bala.seguirCurso()})
+ 		game.onCollideDo(bala, { colicionado =>
+			colicionado.colisionConBala(bala)
+			 
+			})
+ 		
+ 	}
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //class Balas{
 //	var property image
 //	var property cantidad=30

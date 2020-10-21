@@ -6,7 +6,7 @@ import objectos.*
 import movimientos.*
 import balas.*
 
-object nivel0 {
+object nivel0 { 
 
 	var property position = game.origin()
 	const image = "menu.png"

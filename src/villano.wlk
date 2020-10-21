@@ -64,10 +64,10 @@ class Villano{
     
    
 //--------------------------
-    method conlisionConBala(bala){
+    method colisionConBala(bala){
     	game.say(self, "mierda, me dieron")
     	bala.desaparecer()
-    	self.morir()
+    	game.schedule(1000,  {self.morir()})
     	
     }
     

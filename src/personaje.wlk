@@ -56,8 +56,10 @@ class Personaje{
 	/* */
 	
 	method disparar(){
-		balas.generarBalas(self)
+		generadorDeBalas.generarBalas(self)
 	}
+	
+	method colisionConBala(bala){}
 }
 
 object personaje inherits Personaje{

@@ -36,6 +36,8 @@ class Villano{
 		self.hacerDanio(unPersonaje)
 	}
 	
+	method efectos(unPersonaje){}
+	
 	method hacerDanio(unPersonaje){
 		
 		unPersonaje.recibirDanio(danio)

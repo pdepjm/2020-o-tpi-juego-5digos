@@ -6,8 +6,6 @@ import balas.*
 
 class Objetos {
 	
-	var property position
-	
 	method esAtravesable() = true
 	
 	method desaparecer(){
@@ -22,6 +20,8 @@ class Objetos {
 }
 
 class Comida inherits Objetos {
+	
+	var property position
 	
 	var property cura = 33
 	
@@ -45,6 +45,8 @@ class Comida inherits Objetos {
 }
 
 class PowerUp inherits Objetos{
+	
+	var property position
 	
 	var property cura = 100
 	

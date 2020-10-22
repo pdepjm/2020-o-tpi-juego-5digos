@@ -1,12 +1,10 @@
 import wollok.game.*
-import personaje.*
-import villano.*
-import estructuras.*
 import objectos.*
 
 class Balas inherits Objetos{
 	
 	var property direccion
+	var property position
 	override method image() = "fish.png"
 	
 	method chocasteCarpincho(personaje) {}
@@ -14,9 +12,10 @@ class Balas inherits Objetos{
 	method seguirCurso(){
 		
 		position = (direccion.cambioABala() ).avanzar(position, 1)
+		
 	}
 	
-	method desaparecer(){
+	override method desaparecer(){
 		game.removeVisual(self)
 	}
 	
@@ -29,7 +28,7 @@ class Balas inherits Objetos{
 
 object generadorDeBalas{
  	method generarBalas(persona){
- 		var bala = new Balas (position = persona.position(), direccion = persona.direccion())
+ 		const bala = new Balas (position = persona.position(), direccion = persona.direccion())
  		game.addVisual(bala)
  		game.onTick(300, "disparo" , {bala.seguirCurso()})
  		game.onCollideDo(bala, { colicionado =>

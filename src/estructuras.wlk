@@ -62,6 +62,11 @@ class Cajas{
 			
 		}
 	
+	 method colisionConBala(bala) {
+		bala.desaparecer()
+		self.recibirDanio()
+	}
+	
 	method desaparecer(){
 			game.removeVisual(self)
 		}

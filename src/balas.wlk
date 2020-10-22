@@ -1,11 +1,13 @@
 import wollok.game.*
 import objectos.*
+import personaje.*
+import villano.*
+import estructuras.*
 
 class Balas inherits Objetos{
 	
 	var property direccion
-	var property position
-	override method image() = "fish.png"
+	override method image() = "Balas.png"
 	
 	method chocasteCarpincho(personaje) {}
 	

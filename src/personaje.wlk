@@ -10,64 +10,48 @@ class Personaje{
 	var property direccion
 	var property position
 
-	method ir(nuevaDireccion){
-		direccion = nuevaDireccion
+	method ir(newDireccion){
+		direccion = newDireccion
 		self.moverse()
 	}
-	
 	method curarse(cura){
-		vida = (vida+cura).min(99)
+		vida = (vida + cura).min(99)
 	}
-
 	method recibirDanio(danio){
 		vida = (vida-danio).max(0)
-		if(vida==0){self.perder()}
-		else {self.ir(direccion.opuesto())}
-	}
-
-	method moverse(){
-		if(self.todosObjetosAtravesables()){
-			position = direccion.avanzar(position,1)
+		if(vida==0){
+			self.perder()
+		}
+		else {
+			self.ir(direccion.opuesto())
 		}
 	}
-	
+	method moverse(){
+	     if(objetosDeAdelante.todosObjetosAtravesables(self)){
+    		position = direccion.avanzar(position,1)
+    	 }
+	}
 	method esAtravesable() = true
-	
-	method chocasteCarpincho(unPersonaje){}
-	
-	method efectos(unPersonaje){}
-	
-//-----------------	
-	method objetosDelante()=game.getObjectsIn(direccion.avanzar(position,1))
-	
-	method todosObjetosAtravesables() = self.objetosDelante().all({objeto => objeto.esAtravesable()})
-//-----------------	
 	method image ()=direccion.imagePersonaje()
-	
 	method agarrar(unaComida){
 		unaComida.efectos(self)
 	}
-	
 	method perder(){
 		game.removeVisual(self)
 		jugadorVivo = false
 		game.schedule(5000, {game.stop()})
 	}
-	/* */
-	
 	method disparar(){
 		generadorDeBalas.generarBalas(self)
 	}
-	
-	method colisionConBala(bala){}
+	method iniciarP(){
+	self.position(position)
+	self.direccion(direccion)
+	}
 }
 
-object personaje inherits Personaje{
-	var property nroJugador= 1
-	method iniciarP(){
-	self.position(game.at(1,1))
-	self.direccion(carpinchoRickDerecha)
-	}
+object personaje inherits Personaje (position= game.at(1,1), direccion = carpinchoRickDerecha){
+
 	method imagenVida(){
 		if (vida == 99){
 			barraVidaP1.recorrerListaVidas(0)
@@ -84,12 +68,8 @@ object personaje inherits Personaje{
 	}
 }
 
-object personaje2 inherits Personaje{
-	var property nroJugador= 2
-	method iniciarP(){
-	self.position(game.at(1,14))
-	self.direccion(carpinchoMortyDerecha)
-	}
+object personaje2 inherits Personaje (position= game.at(1,14), direccion = carpinchoMortyDerecha){
+
 	method imagenVida(){
 		if (vida == 99){
 			barraVidaP2.recorrerListaVidas(0)

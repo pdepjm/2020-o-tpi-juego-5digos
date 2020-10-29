@@ -3,78 +3,47 @@ import niveles.*
 import villano.*
 import objectos.*
 
+
 class Paredes{
 	
 	var property position
-	
 	method esAtravesable() = false
-	
-	method image ()
-	
 	method colisionConBala(bala) {bala.desaparecer()}
-	
 }
 
 
 class ParedLadrillo inherits Paredes {
-	
-	override method image () = "muroLadrillo.png"
+	method image () = "muroLadrillo.png"
 }
  
 class ParedExterior inherits Paredes {
-
-	override method image () = "muroExterior.png"
+	method image () = "muroExterior.png"
 }
 
 class ParedTrucha inherits Paredes {
-	
-	override method image () = "paredTrucho.png"
-	
+	method image () = "paredTrucho.png"
 	override method colisionConBala(bala) {
-		bala.desaparecer() //ver si se puede simplificar
-		self.recibirDanio()
+		bala.desaparecer()
+		game.removeVisual(self)
 	}
-	
-	method recibirDanio(){
-		
-		self.desaparecer()
-			
-		}
-	
-	method desaparecer(){
-			game.removeVisual(self)
-		}
 }
 
 class Cajas{
 	
 	var property position
-	
 	var property esAtravesable = false
-	
 	method image () = "caja.png"
-	
 	method recibirDanio(){
-		
-		self.desaparecer()
-		
+		game.removeVisual(self)
 		self.spawnearObjeto()
-			
 		}
-	
-	 method colisionConBala(bala) {
+	method spawnearObjeto(){
+		fabricaDePasto.generaUno(position)
+	}
+	method colisionConBala(bala) {
 		bala.desaparecer()
 		self.recibirDanio()
 	}
-	
-	method desaparecer(){
-			game.removeVisual(self)
-		}
-		
-	method spawnearObjeto(){
-		pasto.generaUno(position)
-	}
-	
 }
 
 object caja{

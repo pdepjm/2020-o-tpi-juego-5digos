@@ -27,8 +27,8 @@ object nivel1{
 		self.agregarPersonajes()
 		self.configurarTeclas()
 		paredes.generar()
-		pasto.generar()
-		mate.generar()
+		fabricaDePasto.generar()
+		fabricaDeMate.generar()
 		paredesDentro.generar()
 		caja.generar()
 		paredTrucha.generar()
@@ -69,5 +69,6 @@ object nivel1{
 		
 		}
 	}
+
 
 

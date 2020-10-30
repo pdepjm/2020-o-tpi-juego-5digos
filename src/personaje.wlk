@@ -44,6 +44,9 @@ class Personaje{
 	method disparar(){
 		generadorDeBalas.generarBalas(self)
 	}
+	
+	method colisionConBala(bala){}
+	
 	method iniciarP(){
 	self.position(position)
 	self.direccion(direccion)

@@ -4,66 +4,57 @@ import estructuras.*
 import personaje.*
 import balas.*
 
-
 class Objetos {
-	
 	var property cura
 	var property position
-	
 	method esAtravesable() = true
-	method desaparecer(){
-		game.removeVisual(self)
-	}
-	method image()
-	method colisionConBala(bala) {}
-	method chocasteCarpincho(unPersonaje){
+	method efecto(unPersonaje){
 		unPersonaje.curarse(cura)
 		unPersonaje.imagenVida()
-		self.desaparecer()
+		game.removeVisual(self)
 	}
 }
 
 class Pasto inherits Objetos{
-	override method image() ="pasto.png"
+	method image() ="pasto.png"
 }
 
-object fabricaDePasto inherits Pasto(cura=33){
+object fabricaDePasto inherits Pasto{
 	method generaUno(nuevaPosicion){
 	    game.addVisual(new Pasto(position = nuevaPosicion,cura=33))
-	}
-	
-	method generar(){
-	const lugar = [] 
-	lugar.add(new Position(x=5, y=7))
-	lugar.add(new Position(x=3, y=14))
-	lugar.add(new Position(x=17, y=2))
-	lugar.add(new Position(x=6, y=2))
-	lugar.forEach{p => game.addVisual(new Pasto(position = p,cura=33))}	
 	}
 }
 
 class Mate inherits Objetos{
-	override method image() ="mate.png"
+	method image() ="mate.png"
 }
 
-object fabricaDeMate{
+object fabricaDeMate inherits Mate{
 	method generaUno(nuevaPosicion){
 	    game.addVisual(new Mate(position = nuevaPosicion,cura=100))
-	}
-	method generar(){
-	const lugar = [] 
-		lugar.add(new Position(x=6, y=8))
-		lugar.add(new Position(x=4, y=14))
-		lugar.add(new Position(x=18, y=3))
-		lugar.add(new Position(x=7, y=3))
-		lugar.forEach{p => game.addVisual(new Mate(position = p,cura=100))}	
 	}
 }
 
 object objetosDeAdelante{
-	
 	method objetosDelante(personajeQueSeMueve) = game.getObjectsIn(personajeQueSeMueve.direccion().avanzar(personajeQueSeMueve.position(),1))
     method todosObjetosAtravesables(personajeQueSeMueve) = self.objetosDelante(personajeQueSeMueve).all({objeto => objeto.esAtravesable()})
-	
-	
 }
+
+class Municion {
+	var property position
+	var property carga = 1
+	method esAtravesable() = true
+	method image()="fish.png"
+	method efecto(unPersonaje){
+		unPersonaje.cargar(carga)
+		game.removeVisual(self)
+	}
+}
+
+object municion inherits Municion{
+		method generaUno(nuevaPosicion){
+	    game.addVisual(new Municion(position = nuevaPosicion))
+	}
+}
+
+

@@ -9,6 +9,7 @@ class Personaje{
 	var property vida = 99
 	var property direccion
 	var property position
+	var property municiones = 13
 
 	method ir(newDireccion){
 		direccion = newDireccion
@@ -33,8 +34,11 @@ class Personaje{
 	}
 	method esAtravesable() = true
 	method image ()=direccion.imagePersonaje()
-	method agarrar(unaComida){
-		unaComida.efectos(self)
+	method agarrar(objeto){
+		objeto.efecto(self)
+	}
+	method cargar(cant){
+		municiones = (municiones + cant).min(14) 
 	}
 	method perder(){
 		game.removeVisual(self)
@@ -42,11 +46,14 @@ class Personaje{
 		game.schedule(5000, {game.stop()})
 	}
 	method disparar(){
-		generadorDeBalas.generarBalas(self)
+		if(municiones==0){
+			game.say(self, "no tengo balas")
+		}
+		else{
+		    generadorDeBalas.generarBalas(self)
+		    municiones--
+		    }
 	}
-	
-	method colisionConBala(bala){}
-	
 	method iniciarP(){
 	self.position(position)
 	self.direccion(direccion)

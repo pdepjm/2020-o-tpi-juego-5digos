@@ -7,16 +7,18 @@ import objectos.*
 class Balas {
 	var property position
 	var property direccion
+	var property danioDeBala
 	
-	
-	method chocasteCarpincho(unPersonaje) {}
 	method esAtravesable() = true
 	method image() = "Balas.png"
 	method seguirCurso(){
 		position = direccion.cambioABala().avanzar(position, 1)
 	}
 	method efectos(unPersonaje){}
-	method colisionConBala(bala) {bala.desaparecer()}
+	method colisionConBala(bala) {
+		bala.desaparecer()
+	}
+	method chocasteCarpincho(unPersonaje){}
 	method desaparecer(){
 		game.removeVisual(self)
 	}
@@ -25,9 +27,9 @@ class Balas {
 object generadorDeBalas{
 	
  	method generarBalas(persona){
- 		const bala = new Balas (position = persona.position(), direccion = persona.direccion())
+ 		const bala = new Balas (position = persona.position(), direccion = persona.direccion(),danioDeBala=33)
  		game.addVisual(bala)
- 		game.onTick(300, "disparo" , {bala.seguirCurso()})
+ 		game.onTick(75, "disparo" , {bala.seguirCurso()})
  		game.onCollideDo(bala, { colicionado =>
 			colicionado.colisionConBala(bala)
 			})

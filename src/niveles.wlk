@@ -27,24 +27,21 @@ object nivel1{
 		self.agregarPersonajes()
 		self.configurarTeclas()
 		paredes.generar()
-		fabricaDePasto.generar()
-		fabricaDeMate.generar()
 		paredesDentro.generar()
 		caja.generar()
 		paredTrucha.generar()
 		generadorDeVillanos.generarVillanos()
+		generarSuperVillano.generarVillanos()
 		game.addVisual(barraVidaP1)
 		game.addVisual(barraVidaP2)
 		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho(personaje)})
 		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho(personaje2)})
-		game.onCollideDo(personaje,{unaComida => personaje.agarrar(unaComida)})
-		game.onCollideDo(personaje2,{unaComida => personaje2.agarrar(unaComida)})
+		game.onCollideDo(personaje,{objeto => personaje.agarrar(objeto)})
+		game.onCollideDo(personaje2,{objeto => personaje2.agarrar(objeto)})
 	} 
-	
 	method configurarJuego() {
 		game.ground("sueloClaro.png")
 	}
-		
 	method agregarPersonajes() {
 		personaje.iniciarP()
 		personaje2.iniciarP()
@@ -66,8 +63,8 @@ object nivel1{
 		
 		keyboard.f().onPressDo{personaje.disparar()}
 		keyboard.p().onPressDo{personaje2.disparar()}
-		
 		}
+	
 	}
 
 

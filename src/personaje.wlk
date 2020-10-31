@@ -10,6 +10,7 @@ class Personaje{
 	var property direccion
 	var property position
 	var property municiones = 13
+	var property barraDeVida
 
 	method ir(newDireccion){
 		direccion = newDireccion
@@ -58,43 +59,32 @@ class Personaje{
 	self.position(position)
 	self.direccion(direccion)
 	}
-}
-
-object personaje inherits Personaje (position= game.at(1,1), direccion = carpinchoRickDerecha){
-
-	method imagenVida(){
+	
+	method actualizarImagenVida(){
 		if (vida == 99){
-			barraVidaP1.recorrerListaVidas(0)
+			barraDeVida.recorrerListaVidas(0)
 		}
 		else if (vida == 66){
-			barraVidaP1.recorrerListaVidas(1)
+			barraDeVida.recorrerListaVidas(1)
 		}
 		else if (vida == 33){
-			barraVidaP1.recorrerListaVidas(2)
+			barraDeVida.recorrerListaVidas(2)
 		}
 		else if (vida == 0){
-			barraVidaP1.recorrerListaVidas(3)
+			barraDeVida.recorrerListaVidas(3)
 		}
 	}
+	
+	method colisionConBala(bala){}
+	
+	method chocasteCarpincho(unPersonaje){}
+	
+	method efecto(unPersonaje){}
 }
 
-object personaje2 inherits Personaje (position= game.at(1,14), direccion = carpinchoMortyDerecha){
+object personaje inherits Personaje (barraDeVida = barraVidaP1, position= game.at(1,1), direccion = carpinchoRickDerecha){}
 
-	method imagenVida(){
-		if (vida == 99){
-			barraVidaP2.recorrerListaVidas(0)
-		}
-		else if (vida == 66){
-			barraVidaP2.recorrerListaVidas(1)
-		}
-		else if (vida == 33){
-			barraVidaP2.recorrerListaVidas(2)
-		}
-		else if (vida == 0){
-			barraVidaP2.recorrerListaVidas(3)
-		}
-	}
-}
+object personaje2 inherits Personaje (barraDeVida = barraVidaP2, position= game.at(1,14), direccion = carpinchoMortyDerecha){}
 
 class BarrasDeVida{
 	const property imagenesVidas = ["vida99.png", "vida66.png", "vida33.png", "vida0.png"]

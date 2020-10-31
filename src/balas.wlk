@@ -14,11 +14,15 @@ class Balas {
 	method seguirCurso(){
 		position = direccion.cambioABala().avanzar(position, 1)
 	}
-	method efectos(unPersonaje){}
+	
+	method efecto(algo){}
+	
 	method colisionConBala(bala) {
 		bala.desaparecer()
 	}
+	
 	method chocasteCarpincho(unPersonaje){}
+	
 	method desaparecer(){
 		game.removeVisual(self)
 	}

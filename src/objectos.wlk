@@ -13,6 +13,9 @@ class Objetos {
 		unPersonaje.imagenVida()
 		game.removeVisual(self)
 	}
+	method colisionConBala(bala){}
+	method chocasteCarpincho(unPersonaje){}
+	
 }
 
 class Pasto inherits Objetos{
@@ -49,6 +52,8 @@ class Municion {
 		unPersonaje.cargar(carga)
 		game.removeVisual(self)
 	}
+	method colisionConBala(bala){}
+	method chocasteCarpincho(unPersonaje){}
 }
 
 object municion inherits Municion{

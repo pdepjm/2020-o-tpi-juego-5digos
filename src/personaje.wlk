@@ -18,9 +18,11 @@ class Personaje{
 	}
 	method curarse(cura){
 		vida = (vida + cura).min(99)
+		self.actualizarImagenVida()
 	}
 	method recibirDanio(danio){
 		vida = (vida-danio).max(0)
+		self.actualizarImagenVida()
 		if(vida==0){
 			self.perder()
 		}

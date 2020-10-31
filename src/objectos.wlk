@@ -10,7 +10,6 @@ class Objetos {
 	method esAtravesable() = true
 	method efecto(unPersonaje){
 		unPersonaje.curarse(cura)
-		unPersonaje.actualizarImagenVida()
 		game.removeVisual(self)
 	}
 	method colisionConBala(bala){}

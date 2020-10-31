@@ -20,7 +20,6 @@ class Villano{
 	}
 	method hacerDanio(unPersonaje){
 		unPersonaje.recibirDanio(danio)
-		unPersonaje.actualizarImagenVida()
 	}
 	method image() = direccion.imagePersonaje()
     method moverse(){

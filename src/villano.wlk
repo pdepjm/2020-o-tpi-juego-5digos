@@ -5,7 +5,6 @@ import movimientos.*
 import balas.*
 import objectos.*
 
-
 class Villano{
 	
 	var property position
@@ -20,6 +19,7 @@ class Villano{
 	}
 	method hacerDanio(unPersonaje){
 		unPersonaje.recibirDanio(danio)
+		unPersonaje.actualizarVida()
 	}
 	method image() = direccion.imagePersonaje()
     method moverse(){
@@ -42,15 +42,22 @@ class Villano{
 }
 
 class SuperVillano inherits Villano{
+	var property vivo= true
+	var property muerto=false
 	override method image()="fish.png"
 	override method colisionConBala(bala){
     	vida = (vida- bala.danioDeBala() ).max(0)
     	bala.desaparecer()
     	if(vida==0){
 			game.schedule(100,{game.removeVisual(self)})
+			vivo=false
+			muerto=true
 			self.spawnearObjeto()
+			if(generarSuperVillano.superZombiesMuertos()){
+				game.schedule(5000, {game.stop()})
+			}
 		  }
-        }
+    }
     override method spawnearObjeto(){
     	fabricaDeMate.generaUno(position)
 		municion.generaUno(position)
@@ -58,14 +65,17 @@ class SuperVillano inherits Villano{
 }
 
 object generarSuperVillano{
-	method generarVillanos(){
+	
 		const villanos= [
 		new SuperVillano(position = game.at(23,7),direccion =   [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne(),danio=66),
 		new SuperVillano (position = game.at(23,12),direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne(),danio=66),
 	    new SuperVillano (position = game.at(23,2),direccion =  [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne(),danio=66)]
+	    
+	    method generarVillanos(){
 	    villanos.forEach{villano => game.addVisual(villano)}
-	    game.onTick(3000, "movimiento", {villanos.forEach({villano => villano.moverse()})}) 
+	    game.onTick(750, "movimiento", {villanos.forEach({villano => villano.moverse()})}) 
 	    }
+	    method superZombiesMuertos()= villanos.all({villano => villano.muerto()})
 }
 
 object generadorDeVillanos{
@@ -97,8 +107,7 @@ object generadorDeVillanos{
 	    new Villano (position = game.at(24,1),direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
 	    new Villano (position = game.at(24,12),direccion =[zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne())] 
 	    villanos.forEach{villano => game.addVisual(villano)}
-	    game.onTick(3000, "movimiento", {villanos.forEach({villano => villano.moverse()})}) 
+	    game.onTick(1000, "movimiento", {villanos.forEach({villano => villano.moverse()})}) 
 	}
 
 }
-

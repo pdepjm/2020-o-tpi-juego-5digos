@@ -14,15 +14,11 @@ class Balas {
 	method seguirCurso(){
 		position = direccion.cambioABala().avanzar(position, 1)
 	}
-	
-	method efecto(algo){}
-	
+	method efectos(unPersonaje){}
 	method colisionConBala(bala) {
 		bala.desaparecer()
 	}
-	
 	method chocasteCarpincho(unPersonaje){}
-	
 	method desaparecer(){
 		game.removeVisual(self)
 	}
@@ -34,11 +30,6 @@ object generadorDeBalas{
  		const bala = new Balas (position = persona.position(), direccion = persona.direccion(),danioDeBala=33)
  		game.addVisual(bala)
  		game.onTick(75, "disparo" , {bala.seguirCurso()})
- 		game.onCollideDo(bala, { colicionado =>
-			colicionado.colisionConBala(bala)
-			})
+ 		game.onCollideDo(bala, { colicionado => colicionado.colisionConBala(bala)})
  	}
  }
-
-
-

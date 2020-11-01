@@ -9,15 +9,11 @@ import balas.*
 object nivel0 { 
 
 	var property position = game.origin()
-	const image = "menu.png"
-
-	method image() = image
+	var property image = "menu.png"
 
 	method iniciar() {
 		game.addVisual(self)
-		keyboard.enter().onPressDo({ game.removeVisual(self)
-			nivel1.iniciar()
-		})
+		keyboard.enter().onPressDo({ game.removeVisual(self) nivel1.iniciar()})
 	}
 }
 
@@ -66,6 +62,3 @@ object nivel1{
 		}
 	
 	}
-
-
-

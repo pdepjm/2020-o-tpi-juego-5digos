@@ -10,11 +10,9 @@ class Objetos {
 	method esAtravesable() = true
 	method efecto(unPersonaje){
 		unPersonaje.curarse(cura)
+		unPersonaje.actualizarVida()
 		game.removeVisual(self)
 	}
-	method colisionConBala(bala){}
-	method chocasteCarpincho(unPersonaje){}
-	
 }
 
 class Pasto inherits Objetos{
@@ -51,8 +49,6 @@ class Municion {
 		unPersonaje.cargar(carga)
 		game.removeVisual(self)
 	}
-	method colisionConBala(bala){}
-	method chocasteCarpincho(unPersonaje){}
 }
 
 object municion inherits Municion{
@@ -60,5 +56,3 @@ object municion inherits Municion{
 	    game.addVisual(new Municion(position = nuevaPosicion))
 	}
 }
-
-

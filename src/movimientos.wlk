@@ -4,7 +4,6 @@ import villano.*
 import estructuras.*
 import objectos.*
 
-
 class Izquierda{
 	method cambioABala() = balaIzquierda
 	method avanzar (position,cantidad) = position.left(cantidad)
@@ -75,7 +74,6 @@ object zombieBabosoAbajo inherits Abajo{
 	method imagePersonaje()="ZombieFrente.png"
 }
 
-///
 object balaIzquierda inherits Izquierda{
 	 method image() = "fish.png"
 }
@@ -91,4 +89,3 @@ object balaArriba inherits Arriba{
 object balaAbajo inherits Abajo{
 	 method image() = "fish.png"
 }
-

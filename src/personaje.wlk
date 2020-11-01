@@ -3,13 +3,14 @@ import estructuras.*
 import movimientos.*
 import balas.*
 import objectos.*
+import villano.*
 
 class Personaje{
-	var jugadorVivo = true
+	var property jugadorVivo = true
 	var property vida = 99
 	var property direccion
 	var property position
-	var property municiones = 13
+	var property municiones = 15
 	var property barraDeVida
 
 	method ir(newDireccion){
@@ -18,11 +19,11 @@ class Personaje{
 	}
 	method curarse(cura){
 		vida = (vida + cura).min(99)
-		self.actualizarImagenVida()
+		self.actualizarVida()
 	}
 	method recibirDanio(danio){
 		vida = (vida-danio).max(0)
-		self.actualizarImagenVida()
+		self.actualizarVida()
 		if(vida==0){
 			self.perder()
 		}
@@ -35,8 +36,8 @@ class Personaje{
     		position = direccion.avanzar(position,1)
     	 }
 	}
-	method esAtravesable() = true
-	method image ()=direccion.imagePersonaje()
+	method esAtravesable() = false
+	method image()=direccion.imagePersonaje()
 	method agarrar(objeto){
 		objeto.efecto(self)
 	}
@@ -58,11 +59,11 @@ class Personaje{
 		    }
 	}
 	method iniciarP(){
-	self.position(position)
-	self.direccion(direccion)
+		self.position(position)
+		self.direccion(direccion)
 	}
 	
-	method actualizarImagenVida(){
+	method actualizarVida(){
 		if (vida == 99){
 			barraDeVida.recorrerListaVidas(0)
 		}
@@ -90,15 +91,15 @@ object personaje2 inherits Personaje (barraDeVida = barraVidaP2, position= game.
 
 class BarrasDeVida{
 	const property imagenesVidas = ["vida99.png", "vida66.png", "vida33.png", "vida0.png"]
-	var  imagenDeVida = imagenesVidas.get(0)
-	var property position
+	    var  imagenDeVida = imagenesVidas.get(0)
+	    var property position
 	
-	method esAtravesable() = false
+	    method esAtravesable() = false
 	
-	method image() = imagenDeVida
+	    method image() = imagenDeVida
 	
-	method recorrerListaVidas(unIndice){
-		imagenDeVida = imagenesVidas.get(unIndice)
+	    method recorrerListaVidas(unIndice){
+		    imagenDeVida = imagenesVidas.get(unIndice)
 	}
 }
 

@@ -46,7 +46,7 @@ class Municion {
 	var property position
 	var property carga = 1
 	method esAtravesable() = true
-	method image()="fish.png"
+	method image()="municion.png"
 	method efecto(unPersonaje){
 		unPersonaje.cargar(carga)
 		game.removeVisual(self)

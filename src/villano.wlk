@@ -44,7 +44,7 @@ class Villano{
 class SuperVillano inherits Villano{
 	var property vivo= true
 	var property muerto=false
-	override method image()="fish.png"
+	override method image()="doge.png"
 	override method colisionConBala(bala){
     	vida = (vida- bala.danioDeBala() ).max(0)
     	bala.desaparecer()

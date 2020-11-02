@@ -18,10 +18,20 @@ class Balas {
 	method efecto(algo){}
 	
 	method efectos(unPersonaje){}
+	
+	method chocasteConObstaculoRompible(unObstaculo){
+		return unObstaculo.esRompible()
+	}
+	
+	method chocasteConVillano(unVillano){
+		return unVillano.esGolpeable()
+	}	
+	
 	method colisionConBala(bala) {
 		bala.desaparecer()
 	}
 	method chocasteCarpincho(unPersonaje){}
+	
 	method desaparecer(){
 		game.removeVisual(self)
 	}

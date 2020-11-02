@@ -6,6 +6,7 @@ import objectos.*
 class Paredes{
 	var property position
 	method esAtravesable() = false
+	method esRompible() = false
 	method colisionConBala(bala) {
 		bala.desaparecer()
 	}
@@ -21,6 +22,7 @@ class ParedExterior inherits Paredes {
 
 class ParedTrucha inherits Paredes {
 	method image () = "paredTrucho.png"
+	override method esRompible() = true
 	override method colisionConBala(bala) {
 		bala.desaparecer()
 		game.removeVisual(self)
@@ -30,6 +32,7 @@ class ParedTrucha inherits Paredes {
 class Cajas{
 	var property position
 	var property esAtravesable = false
+	method esRompible() = true
 	method image () = "caja.png"
 	method spawnearObjeto(){
 		fabricaDePasto.generaUno(position)

@@ -36,45 +36,25 @@ describe "Movimientos del Personaje y colisiones con estructuras NO atravesables
 
 describe "Colisiones de Balas"{
 	
-	test "Bala colisiona contra ParedLadrillo o ParedExterior (no se destruyen al pegarle)" {
-		
+	test "Bala colisiona contra ParedLadrillo o ParedExterior (no son rompibles)" {
+		nivel1.iniciar()
+		const nuevaPared = new ParedLadrillo(position = game.at(4,1))
+		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
+		assert.notThat(balaPrueba.chocasteConObstaculoRompible(nuevaPared))
 	}
 	
-	test "Bala colisiona contra ParedTrucha (se destruyen al pegarles)" {
-		
+	test "Bala colisiona contra ParedTrucha (son rompibles)" {
+		nivel1.iniciar()
+		const nuevaPared = new ParedTrucha(position = game.at(4,1))
+		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
+		assert.that(balaPrueba.chocasteConObstaculoRompible(nuevaPared))
 	}
 	
 	test "Bala colisiona contra Villano" {
-		
-	}
-	
-	test "Bala colisiona contra SuperVillano" {
-		
-	}
-}
-
-describe "Colision entre Villano y Personaje" {
-	
-	test "Villano golpea a Personaje"{
-		
-	}
-}
-
-describe "Efectos de Objetos"{
-	
-	test "Personaje con vida llena recoge pasto" {
-		
-	}
-	
-	test "Personaje con un tercio de vida recoge pasto" {
-		
-	}
-	
-	test "Personaje sin balas recoge municion"{
-		
-	}
-	
-	test "Personaje con un tercio de vida recoge mate"{
+		nivel1.iniciar()
+		const villanoPrueba = new Villano (position = game.at(4,1),direccion = [zombieBabosoIzquierda])
+		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
+		assert.that(balaPrueba.chocasteConVillano(villanoPrueba))
 		
 	}
 }

@@ -12,6 +12,7 @@ class Villano{
 	var property danio = 33
 	var property direccion
 	
+	method esGolpeable() = true
 	method esAtravesable() = true
 	method chocasteCarpincho(unPersonaje){
 		game.say(self, "jaja, EZ PT")

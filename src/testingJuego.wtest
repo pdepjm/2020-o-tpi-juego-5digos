@@ -1,0 +1,80 @@
+import wollok.game.*
+import balas.*
+import estructuras.*
+import movimientos.*
+import niveles.*
+import objectos.*
+import personaje.*
+import villano.*
+
+describe "Movimientos del Personaje y colisiones con estructuras NO atravesables" {
+	// recordar que personaje inicia en la posicion (1,1)
+	test "personaje.ir(carpinchoRickDerecha) mueve al personaje 1 posicion hacia la derecha" {
+		nivel1.iniciar()
+		personaje.ir(carpinchoRickDerecha)
+		assert.equals(game.at(2, 1), personaje.position())
+	}
+	
+	test "personaje.ir(carpinchoRickIzquierda) no cambia la posicion del personaje dado que una pared se lo impide" {
+		nivel1.iniciar()
+		personaje.ir(carpinchoRickIzquierda)
+		assert.equals(game.at(1, 1), personaje.position())
+	}
+	
+	test "personaje.ir(carpinchoRickArriba) mueve al personaje 1 posicion hacia arriba" {
+		nivel1.iniciar()
+		personaje.ir(carpinchoRickArriba)
+		assert.equals(game.at(1, 2), personaje.position())
+	}
+	
+	test "personaje.ir(carpinchoRickAbajo) no cambia la posicion del personaje dado que una pared se lo impide" {
+		nivel1.iniciar()
+		personaje.ir(carpinchoRickAbajo)
+		assert.equals(game.at(1, 1), personaje.position())
+	}
+}
+
+describe "Colisiones de Balas"{
+	
+	test "Bala colisiona contra ParedLadrillo o ParedExterior (no se destruyen al pegarle)" {
+		
+	}
+	
+	test "Bala colisiona contra ParedTrucha (se destruyen al pegarles)" {
+		
+	}
+	
+	test "Bala colisiona contra Villano" {
+		
+	}
+	
+	test "Bala colisiona contra SuperVillano" {
+		
+	}
+}
+
+describe "Colision entre Villano y Personaje" {
+	
+	test "Villano golpea a Personaje"{
+		
+	}
+}
+
+describe "Efectos de Objetos"{
+	
+	test "Personaje con vida llena recoge pasto" {
+		
+	}
+	
+	test "Personaje con un tercio de vida recoge pasto" {
+		
+	}
+	
+	test "Personaje sin balas recoge municion"{
+		
+	}
+	
+	test "Personaje con un tercio de vida recoge mate"{
+		
+	}
+}

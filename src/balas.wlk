@@ -14,6 +14,9 @@ class Balas {
 	method seguirCurso(){
 		position = direccion.cambioABala().avanzar(position, 1)
 	}
+	
+	method efecto(algo){}
+	
 	method efectos(unPersonaje){}
 	method colisionConBala(bala) {
 		bala.desaparecer()

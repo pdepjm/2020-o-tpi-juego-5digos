@@ -34,6 +34,7 @@ class Balas {
 	
 	method desaparecer(){
 		game.removeVisual(self)
+		return true
 	}
 }
 

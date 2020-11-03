@@ -39,22 +39,78 @@ describe "Colisiones de Balas"{
 	test "Bala colisiona contra ParedLadrillo o ParedExterior (no son rompibles)" {
 		nivel1.iniciar()
 		const nuevaPared = new ParedLadrillo(position = game.at(4,1))
+		game.addVisual(nuevaPared)
 		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
-		assert.notThat(balaPrueba.chocasteConObstaculoRompible(nuevaPared))
+		game.addVisual(balaPrueba)
+		assert.that(nuevaPared.colisionConBala(balaPrueba))
 	}
 	
 	test "Bala colisiona contra ParedTrucha (son rompibles)" {
 		nivel1.iniciar()
 		const nuevaPared = new ParedTrucha(position = game.at(4,1))
+		game.addVisual(nuevaPared)
 		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
-		assert.that(balaPrueba.chocasteConObstaculoRompible(nuevaPared))
+		game.addVisual(balaPrueba)
+		assert.that(nuevaPared.colisionConBala(balaPrueba))
 	}
 	
 	test "Bala colisiona contra Villano" {
 		nivel1.iniciar()
 		const villanoPrueba = new Villano (position = game.at(4,1),direccion = [zombieBabosoIzquierda])
+		game.addVisual(villanoPrueba)
 		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
-		assert.that(balaPrueba.chocasteConVillano(villanoPrueba))
-		
+		game.addVisual(balaPrueba)
+		assert.that(villanoPrueba.colisionConBala(balaPrueba))	
+	}
+}
+
+describe "Efectos de Objetos"{
+	
+	test "Personaje con vida llena recoge pasto" {
+		const pastoPrueba = new Pasto(cura = 33, position = game.at(1,1))
+		game.addVisual(pastoPrueba)
+		nivel1.iniciar()
+		personaje.vida(99)
+		pastoPrueba.efecto(personaje)
+		assert.equals(personaje.vida(), 99)
+	}
+	
+	test "Personaje con un tercio de vida recoge pasto" {
+		const pastoPrueba = new Pasto(position = game.at(1,1), cura=33)
+		game.addVisual(pastoPrueba)
+		nivel1.iniciar()
+		personaje.vida(33)
+		pastoPrueba.efecto(personaje)
+		assert.equals(personaje.vida(), 66)
+	}
+
+	test "Personaje con un tercio de vida recoge mate"{
+		const matePrueba = new Mate(position = game.at(1,1), cura=100)
+		game.addVisual(matePrueba)
+		nivel1.iniciar()
+		personaje.vida(33)
+		matePrueba.efecto(personaje)
+		assert.equals(personaje.vida(), 99)
+	}
+
+	test "Personaje sin balas recoge municion"{
+		const municionPrueba = new Municion(position = game.at(1,1))
+		game.addVisual(municionPrueba)
+		nivel1.iniciar()
+		personaje.municiones(0)
+		municionPrueba.efecto(personaje)
+		assert.equals(personaje.municiones(), 1)
+	}
+}
+
+describe "Colision entre Personaje y Villano"{
+	
+	test "Personaje colisiona con Villano y pierde vida"{
+		const villanoBarraBrava = new Villano (position = game.at(2,1),direccion = [zombieBabosoIzquierda])
+		game.addVisual(villanoBarraBrava)
+		nivel1.iniciar()
+		personaje.vida(99)
+		villanoBarraBrava.chocasteCarpincho(personaje)
+		assert.equals(personaje.vida(), 66)	
 	}
 }

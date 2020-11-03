@@ -36,6 +36,7 @@ class Villano{
     	bala.desaparecer()
     	game.schedule(100,{game.removeVisual(self)})
     	self.spawnearObjeto()
+    	return true
     }
     method spawnearObjeto(){
 		municion.generaUno(position)
@@ -58,6 +59,7 @@ class SuperVillano inherits Villano{
 				game.schedule(5000, {game.stop()})
 			}
 		  }
+		 return true
     }
     override method spawnearObjeto(){
     	fabricaDeMate.generaUno(position)

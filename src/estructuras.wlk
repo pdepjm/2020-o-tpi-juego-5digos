@@ -9,6 +9,7 @@ class Paredes{
 	method esRompible() = false
 	method colisionConBala(bala) {
 		bala.desaparecer()
+		return true
 	}
 }
 
@@ -26,6 +27,7 @@ class ParedTrucha inherits Paredes {
 	override method colisionConBala(bala) {
 		bala.desaparecer()
 		game.removeVisual(self)
+		return true
 	}
 }
 

@@ -11,9 +11,10 @@ class Villano{
 	var property vida = 99
 	var property danio = 33
 	var property direccion
+	var property esAtravesable =true
 	
+	method image() = direccion.imagePersonaje()
 	method esGolpeable() = true
-	method esAtravesable() = true
 	method chocasteCarpincho(unPersonaje){
 		game.say(self, "jaja, EZ PT")
 		self.hacerDanio(unPersonaje)
@@ -22,9 +23,8 @@ class Villano{
 		unPersonaje.recibirDanio(danio)
 		unPersonaje.actualizarVida()
 	}
-	method image() = direccion.imagePersonaje()
     method moverse(){
-    direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()
+        direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()
    	    self.moverseHacia(direccion)
     }
     method moverseHacia(newDireccion){
@@ -47,8 +47,12 @@ class SuperVillano inherits Villano{
 	var property vivo= true
 	var property muerto=false
 	override method image()="doge.png"
+	override method moverse(){
+		direccion = [izquierda,derecha,abajo,arriba].anyOne()
+		self.moverseHacia(direccion)
+	}
 	override method colisionConBala(bala){
-    	vida = (vida- bala.danioDeBala() ).max(0)
+    	vida = (vida- bala.danioDeBala()).max(0)
     	bala.desaparecer()
     	if(vida==0){
 			game.schedule(100,{game.removeVisual(self)})
@@ -59,20 +63,20 @@ class SuperVillano inherits Villano{
 				game.schedule(5000, {game.stop()})
 			}
 		  }
-		 return true
+	   return true
     }
     override method spawnearObjeto(){
+    	super()
     	fabricaDeMate.generaUno(position)
-		municion.generaUno(position)
 	}
 }
 
 object generarSuperVillano{
 	
 		const villanos= [
-		new SuperVillano(position = game.at(23,7),direccion =   [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne(),danio=66),
-		new SuperVillano (position = game.at(23,12),direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne(),danio=66),
-	    new SuperVillano (position = game.at(23,2),direccion =  [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne(),danio=66)]
+		new SuperVillano(position = game.at(23,7),direccion =   [izquierda,derecha,abajo,arriba].anyOne(),danio=66),
+		new SuperVillano (position = game.at(23,12),direccion = [izquierda,derecha,abajo,arriba].anyOne(),danio=66),
+	    new SuperVillano (position = game.at(23,2),direccion =  [izquierda,derecha,abajo,arriba].anyOne(),danio=66)]
 	    
 	    method generarVillanos(){
 	    villanos.forEach{villano => game.addVisual(villano)}

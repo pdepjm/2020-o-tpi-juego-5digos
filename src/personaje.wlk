@@ -13,7 +13,9 @@ class Personaje{
 	var property municiones = 15
 	var property barraDeVida
 	var property contadorMunicion
-
+	var property esAtravesable = false
+	
+	method image()=direccion.imagePersonaje()
 	method ir(newDireccion){
 		direccion = newDireccion
 		self.moverse()
@@ -37,8 +39,6 @@ class Personaje{
     		position = direccion.avanzar(position,1)
     	 }
 	}
-	method esAtravesable() = false
-	method image()=direccion.imagePersonaje()
 	method agarrar(objeto){
 		objeto.efecto(self)
 	}
@@ -65,7 +65,6 @@ class Personaje{
 		self.position(position)
 		self.direccion(direccion)
 	}
-	
 	method actualizarVida(){
 		if (vida == 99){
 			barraDeVida.recorrerListaVidas(0)
@@ -79,8 +78,8 @@ class Personaje{
 		else if (vida == 0){
 			barraDeVida.recorrerListaVidas(3)
 		}
+		
 	}
-	
 	method actualizarMunicion(){
 		if (municiones == 15){
 			contadorMunicion.recorrerListaMunicion(0)
@@ -131,29 +130,37 @@ class Personaje{
 			contadorMunicion.recorrerListaMunicion(15)
 		}
 	}
-	
+	//no iria pero para que no salga el mensaje
 	method colisionConBala(bala){}
-	
 	method chocasteCarpincho(unPersonaje){}
-	
 	method efecto(unPersonaje){}
 }
 
-object personaje inherits Personaje (contadorMunicion = contadorMunicionP1 ,barraDeVida = barraVidaP1, position= game.at(1,1), direccion = carpinchoRickDerecha){}
+const personaje = new Personaje (contadorMunicion = contadorMunicionP1, barraDeVida = barraVidaP1, position= game.at(1,1), direccion = carpinchoRickDerecha)
 
-object personaje2 inherits Personaje (contadorMunicion = contadorMunicionP2 ,barraDeVida = barraVidaP2, position= game.at(1,14), direccion = carpinchoMortyDerecha){}
+const personaje2 = new Personaje (contadorMunicion = contadorMunicionP2, barraDeVida = barraVidaP2, position= game.at(1,14), direccion = carpinchoMortyDerecha)
 
 class BarrasDeVida{
 	const property imagenesVidas = ["vida99.png", "vida66.png", "vida33.png", "vida0.png"]
 	    var  imagenDeVida = imagenesVidas.get(0)
 	    var property position
-	
-	    method esAtravesable() = false
+	    var property esAtravesable = false
 	
 	    method image() = imagenDeVida
-	
 	    method recorrerListaVidas(unIndice){
 		    imagenDeVida = imagenesVidas.get(unIndice)
+	}
+}
+
+object barraVidaP1 inherits BarrasDeVida{
+	method iniciarB(){
+		self.position(game.at(4,15))
+	}
+}
+
+object barraVidaP2 inherits BarrasDeVida{
+	method iniciarB(){
+		self.position(game.at(23,15))
 	}
 }
 
@@ -168,18 +175,6 @@ class ContadoresDeMunicion{
 	
 	method recorrerListaMunicion(unIndice){
 		imagenDeMunicion = imagenMunicion.get(unIndice)
-	}
-}
-
-object barraVidaP1 inherits BarrasDeVida{
-	method iniciarB(){
-		self.position(game.at(4,15))
-	}
-}
-
-object barraVidaP2 inherits BarrasDeVida{
-	method iniciarB(){
-		self.position(game.at(23,15))
 	}
 }
 

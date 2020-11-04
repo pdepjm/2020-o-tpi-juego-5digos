@@ -35,7 +35,7 @@ class Cajas{
 	var property position
 	var property esAtravesable = false
 	method esRompible() = true
-	method image () = "caja.png"
+	method image() = "caja.png"
 	method spawnearObjeto(){
 		fabricaDePasto.generaUno(position)
 		}
@@ -43,6 +43,7 @@ class Cajas{
 		bala.desaparecer()
 		game.removeVisual(self)
 		fabricaDePasto.generaUno(position)
+		return true
 	}
 }
 
@@ -142,3 +143,4 @@ object paredes{
 		posParedes.forEach{ p => game.addVisual(new ParedExterior(position = p))}	
 	}
 }
+

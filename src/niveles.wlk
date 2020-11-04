@@ -64,11 +64,4 @@ object nivel1{
 		keyboard.f().onPressDo{personaje.disparar()}
 		keyboard.p().onPressDo{personaje2.disparar()}
 		}
-	
-	
-	
-	
-	
-	
-	
 	}

@@ -103,6 +103,10 @@ class BarrasDeVida{
 	}
 }
 
+class ContadorDeMunicion{
+	const property imagenMunicion = []
+}
+
 object barraVidaP1 inherits BarrasDeVida{
 	method iniciarB(){
 		self.position(game.at(4,15))

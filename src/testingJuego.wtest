@@ -113,4 +113,5 @@ describe "Colision entre Personaje y Villano"{
 		villanoBarraBrava.chocasteCarpincho(personaje)
 		assert.equals(personaje.vida(), 66)	
 	}
+	
 }

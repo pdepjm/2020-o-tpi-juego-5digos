@@ -12,6 +12,7 @@ class Personaje{
 	var property position
 	var property municiones = 15
 	var property barraDeVida
+	var property contadorMunicion
 
 	method ir(newDireccion){
 		direccion = newDireccion
@@ -42,7 +43,8 @@ class Personaje{
 		objeto.efecto(self)
 	}
 	method cargar(cant){
-		municiones = (municiones + cant).min(14) 
+		municiones = (municiones + cant).min(15) 
+		self.actualizarMunicion()
 	}
 	method perder(){
 		game.removeVisual(self)
@@ -56,6 +58,7 @@ class Personaje{
 		else{
 		    generadorDeBalas.generarBalas(self)
 		    municiones--
+		    self.actualizarMunicion()
 		    }
 	}
 	method iniciarP(){
@@ -78,6 +81,57 @@ class Personaje{
 		}
 	}
 	
+	method actualizarMunicion(){
+		if (municiones == 15){
+			contadorMunicion.recorrerListaMunicion(0)
+		}
+		else if (municiones == 14){
+			contadorMunicion.recorrerListaMunicion(1)
+		}
+		else if (municiones == 13){
+			contadorMunicion.recorrerListaMunicion(2)
+		}
+		else if (municiones == 12){
+			contadorMunicion.recorrerListaMunicion(3)
+		}
+		else if (municiones == 11){
+			contadorMunicion.recorrerListaMunicion(4)
+		}
+		else if (municiones == 10){
+			contadorMunicion.recorrerListaMunicion(5)
+		}
+		else if (municiones == 9){
+			contadorMunicion.recorrerListaMunicion(6)
+		}
+		else if (municiones == 8){
+			contadorMunicion.recorrerListaMunicion(7)
+		}
+		else if (municiones == 7){
+			contadorMunicion.recorrerListaMunicion(8)
+		}
+		else if (municiones == 6){
+			contadorMunicion.recorrerListaMunicion(9)
+		}
+		else if (municiones == 5){
+			contadorMunicion.recorrerListaMunicion(10)
+		}
+		else if (municiones == 4){
+			contadorMunicion.recorrerListaMunicion(11)
+		}
+		else if (municiones == 3){
+			contadorMunicion.recorrerListaMunicion(12)
+		}
+		else if (municiones == 2){
+			contadorMunicion.recorrerListaMunicion(13)
+		}
+		else if (municiones == 1){
+			contadorMunicion.recorrerListaMunicion(14)
+		}
+		else if (municiones == 0){
+			contadorMunicion.recorrerListaMunicion(15)
+		}
+	}
+	
 	method colisionConBala(bala){}
 	
 	method chocasteCarpincho(unPersonaje){}
@@ -85,9 +139,9 @@ class Personaje{
 	method efecto(unPersonaje){}
 }
 
-object personaje inherits Personaje (barraDeVida = barraVidaP1, position= game.at(1,1), direccion = carpinchoRickDerecha){}
+object personaje inherits Personaje (contadorMunicion = contadorMunicionP1 ,barraDeVida = barraVidaP1, position= game.at(1,1), direccion = carpinchoRickDerecha){}
 
-object personaje2 inherits Personaje (barraDeVida = barraVidaP2, position= game.at(1,14), direccion = carpinchoMortyDerecha){}
+object personaje2 inherits Personaje (contadorMunicion = contadorMunicionP2 ,barraDeVida = barraVidaP2, position= game.at(1,14), direccion = carpinchoMortyDerecha){}
 
 class BarrasDeVida{
 	const property imagenesVidas = ["vida99.png", "vida66.png", "vida33.png", "vida0.png"]
@@ -103,8 +157,18 @@ class BarrasDeVida{
 	}
 }
 
-class ContadorDeMunicion{
-	const property imagenMunicion = []
+class ContadoresDeMunicion{
+	const property imagenMunicion = ["balas15.png", "balas14.png","balas13.png","balas12.png","balas11.png","balas10.png","balas9.png","balas8.png","balas7.png","balas6.png","balas5.png","balas4.png","balas3.png","balas2.png","balas1.png","balas0.png"]
+	var imagenDeMunicion = imagenMunicion.get(0)
+	var property position
+	
+	method esAtravesable() = false
+	
+	method image() = imagenDeMunicion
+	
+	method recorrerListaMunicion(unIndice){
+		imagenDeMunicion = imagenMunicion.get(unIndice)
+	}
 }
 
 object barraVidaP1 inherits BarrasDeVida{
@@ -116,5 +180,17 @@ object barraVidaP1 inherits BarrasDeVida{
 object barraVidaP2 inherits BarrasDeVida{
 	method iniciarB(){
 		self.position(game.at(23,15))
+	}
+}
+
+object contadorMunicionP1 inherits ContadoresDeMunicion{
+	method iniciarC(){
+		self.position(game.at(5,15))
+	}
+}
+
+object contadorMunicionP2 inherits ContadoresDeMunicion{
+	method iniciarC(){
+		self.position(game.at(24,15))
 	}
 }

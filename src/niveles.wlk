@@ -30,6 +30,8 @@ object nivel1{
 		generarSuperVillano.generarVillanos()
 		game.addVisual(barraVidaP1)
 		game.addVisual(barraVidaP2)
+		game.addVisual(contadorMunicionP1)
+		game.addVisual(contadorMunicionP2)
 		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho(personaje)})
 		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho(personaje2)})
 		game.onCollideDo(personaje,{objeto => personaje.agarrar(objeto)})
@@ -43,6 +45,8 @@ object nivel1{
 		personaje2.iniciarP()
 		barraVidaP1.iniciarB()
 		barraVidaP2.iniciarB()
+		contadorMunicionP1.iniciarC()
+		contadorMunicionP2.iniciarC()
 		game.addVisual(personaje)
 		game.addVisual(personaje2)
 	}

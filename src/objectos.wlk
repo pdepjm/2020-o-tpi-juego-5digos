@@ -4,10 +4,11 @@ import estructuras.*
 import personaje.*
 import balas.*
 
-class Objetos {
+class ObjetosQueDanVida {
 	var property cura
 	var property position
-	method esAtravesable() = true
+	var property esAtravesable =true
+	
 	method efecto(unPersonaje){
 		unPersonaje.curarse(cura)
 		unPersonaje.actualizarVida()
@@ -17,7 +18,7 @@ class Objetos {
 	method chocasteCarpincho(unPersonaje){}
 }
 
-class Pasto inherits Objetos{
+class Pasto inherits ObjetosQueDanVida{
 	method image() ="pasto.png"
 }
 
@@ -27,7 +28,7 @@ object fabricaDePasto inherits Pasto{
 	}
 }
 
-class Mate inherits Objetos{
+class Mate inherits ObjetosQueDanVida{
 	method image() ="mate.png"
 }
 
@@ -59,4 +60,7 @@ object municion inherits Municion{
 		method generaUno(nuevaPosicion){
 	    game.addVisual(new Municion(position = nuevaPosicion))
 	}
+	
+	
+	
 }

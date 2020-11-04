@@ -5,19 +5,19 @@ import estructuras.*
 import objectos.*
 
 class Izquierda{
-	method cambioABala() = balaIzquierda
+	method cambioABala() = izquierda
 	method avanzar (position,cantidad) = position.left(cantidad)
 }
 class Derecha{
-	method cambioABala() = balaDerecha
+	method cambioABala() = derecha
 	method avanzar (position,cantidad) = position.right(cantidad)
 }
 class Arriba{
-	method cambioABala() = balaArriba
+	method cambioABala() = arriba
 	method avanzar (position,cantidad) = position.up(cantidad)
 }
 class Abajo{
-	method cambioABala() = balaAbajo
+	method cambioABala() = abajo
 	method avanzar (position,cantidad) = position.down(cantidad)
 }
 
@@ -58,34 +58,20 @@ object carpinchoMortyAbajo inherits Abajo{
 }
 
 object zombieBabosoIzquierda inherits Izquierda{
-	method opuesto()= zombieBabosoDerecha
 	method imagePersonaje()="ZombieIzquierda.png"
 }
 object zombieBabosoDerecha inherits Derecha{
-	method opuesto()= zombieBabosoIzquierda
 	method imagePersonaje()="ZombieDerecha.png"
 }
 object zombieBabosoArriba inherits Arriba{
-	method opuesto()= zombieBabosoAbajo
 	method imagePersonaje()="ZombieBack.png"
 }
 object zombieBabosoAbajo inherits Abajo{
-	method opuesto()= zombieBabosoArriba
 	method imagePersonaje()="ZombieFrente.png"
 }
 
-object balaIzquierda inherits Izquierda{
-	 method image() = "fish.png"
-}
-
-object balaDerecha inherits Derecha{
-	 method image() = "fish.png"
-}
-
-object balaArriba inherits Arriba{
-	 method image() = "fish.png"
-}
-
-object balaAbajo inherits Abajo{
-	 method image() = "fish.png"
-}
+//se podia haber instanciado pero queda feo ademas la diversidad de objetos e instancias hace hermoso al mundo y si no nos agarramos en donde quieras
+object izquierda inherits Izquierda{}
+object derecha inherits Derecha{}
+object abajo inherits Abajo{}
+object arriba inherits Arriba{}

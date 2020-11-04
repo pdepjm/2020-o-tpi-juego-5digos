@@ -7,6 +7,7 @@ import objectos.*
 import personaje.*
 import villano.*
 
+
 describe "Movimientos del Personaje y colisiones con estructuras NO atravesables" {
 	// recordar que personaje inicia en la posicion (1,1)
 	test "personaje.ir(carpinchoRickDerecha) mueve al personaje 1 posicion hacia la derecha" {

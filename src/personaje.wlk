@@ -188,4 +188,6 @@ object contadorMunicionP2 inherits ContadoresDeMunicion{
 	method iniciarC(){
 		self.position(game.at(24,15))
 	}
+	
+	
 }

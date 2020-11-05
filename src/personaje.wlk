@@ -4,6 +4,7 @@ import movimientos.*
 import balas.*
 import objectos.*
 import villano.*
+import niveles.*
 
 class Personaje{
 	var property jugadorVivo = true
@@ -13,7 +14,7 @@ class Personaje{
 	var property municiones = 15
 	var property barraDeVida
 	var property contadorMunicion
-	var property esAtravesable = false
+	var property esAtravesable = true
 	
 	method image()=direccion.imagePersonaje()
 	method ir(newDireccion){
@@ -49,7 +50,7 @@ class Personaje{
 	method perder(){
 		game.removeVisual(self)
 		jugadorVivo = false
-		game.schedule(5000, {game.stop()})
+		game.schedule(2000, {nivel2.iniciar()})
 	}
 	method disparar(){
 		if(municiones==0){
@@ -187,7 +188,5 @@ object contadorMunicionP1 inherits ContadoresDeMunicion{
 object contadorMunicionP2 inherits ContadoresDeMunicion{
 	method iniciarC(){
 		self.position(game.at(24,15))
-	}
-	
-	
+	}	
 }

@@ -65,3 +65,25 @@ object nivel1{
 		keyboard.p().onPressDo{personaje2.disparar()}
 		}
 	}
+	
+object nivel2{
+	
+	var property position = game.origin()
+	var property image = "menuGO.png"
+	
+	method iniciar() {
+		game.addVisual(self)
+		keyboard.f().onPressDo({game.stop()})
+	}
+}
+
+object nivel3{
+	
+	var property position = game.origin()
+	var property image = "menuWin.png"
+	
+	method iniciar() {
+		game.addVisual(self)
+		keyboard.w().onPressDo({game.stop()})
+	}
+}

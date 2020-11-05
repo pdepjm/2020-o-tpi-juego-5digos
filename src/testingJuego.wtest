@@ -108,3 +108,12 @@ describe "Colision entre Personaje y Villano"{
 	}
 	
 }
+
+describe "Personajes pierden partida"{
+	
+	test "algun personaje muere"{
+		game.addVisual(personaje)
+		personaje.vida(0)
+		assert.that(personaje.perder())
+	}
+}

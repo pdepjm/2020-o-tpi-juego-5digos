@@ -51,6 +51,7 @@ class Personaje{
 		game.removeVisual(self)
 		jugadorVivo = false
 		game.schedule(2000, {nivel2.iniciar()})
+		return true
 	}
 	method disparar(){
 		if(municiones==0){

@@ -74,6 +74,7 @@ object nivel2{
 	method iniciar() {
 		game.addVisual(self)
 		keyboard.f().onPressDo({game.stop()})
+		return true
 	}
 }
 
@@ -85,5 +86,6 @@ object nivel3{
 	method iniciar() {
 		game.addVisual(self)
 		keyboard.w().onPressDo({game.stop()})
+		return true
 	}
 }

@@ -36,9 +36,8 @@ describe "Movimientos del Personaje y colisiones con estructuras NO atravesables
 }
 
 describe "Colisiones de Balas"{
-	
+	// recordar que personaje inicia en la posicion (1,1)
 	test "Bala colisiona contra ParedLadrillo o ParedExterior (no son rompibles)" {
-		nivel1.iniciar()
 		const nuevaPared = new ParedLadrillo(position = game.at(4,1))
 		game.addVisual(nuevaPared)
 		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
@@ -47,7 +46,6 @@ describe "Colisiones de Balas"{
 	}
 	
 	test "Bala colisiona contra ParedTrucha (son rompibles)" {
-		nivel1.iniciar()
 		const nuevaPared = new ParedTrucha(position = game.at(4,1))
 		game.addVisual(nuevaPared)
 		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
@@ -56,7 +54,6 @@ describe "Colisiones de Balas"{
 	}
 	
 	test "Bala colisiona contra Villano" {
-		nivel1.iniciar()
 		const villanoPrueba = new Villano (position = game.at(4,1),direccion = [zombieBabosoIzquierda])
 		game.addVisual(villanoPrueba)
 		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
@@ -66,11 +63,10 @@ describe "Colisiones de Balas"{
 }
 
 describe "Efectos de Objetos"{
-	
+// recordar que personaje inicia en la posicion (1,1)
 	test "Personaje con vida llena recoge pasto" {
 		const pastoPrueba = new Pasto(cura = 33, position = game.at(1,1))
 		game.addVisual(pastoPrueba)
-		nivel1.iniciar()
 		personaje.vida(99)
 		pastoPrueba.efecto(personaje)
 		assert.equals(personaje.vida(), 99)
@@ -79,7 +75,6 @@ describe "Efectos de Objetos"{
 	test "Personaje con un tercio de vida recoge pasto" {
 		const pastoPrueba = new Pasto(position = game.at(1,1), cura=33)
 		game.addVisual(pastoPrueba)
-		nivel1.iniciar()
 		personaje.vida(33)
 		pastoPrueba.efecto(personaje)
 		assert.equals(personaje.vida(), 66)
@@ -88,7 +83,6 @@ describe "Efectos de Objetos"{
 	test "Personaje con un tercio de vida recoge mate"{
 		const matePrueba = new Mate(position = game.at(1,1), cura=100)
 		game.addVisual(matePrueba)
-		nivel1.iniciar()
 		personaje.vida(33)
 		matePrueba.efecto(personaje)
 		assert.equals(personaje.vida(), 99)
@@ -97,7 +91,6 @@ describe "Efectos de Objetos"{
 	test "Personaje sin balas recoge municion"{
 		const municionPrueba = new Municion(position = game.at(1,1))
 		game.addVisual(municionPrueba)
-		nivel1.iniciar()
 		personaje.municiones(0)
 		municionPrueba.efecto(personaje)
 		assert.equals(personaje.municiones(), 1)
@@ -105,11 +98,10 @@ describe "Efectos de Objetos"{
 }
 
 describe "Colision entre Personaje y Villano"{
-	
+// recordar que personaje inicia en la posicion (1,1)	
 	test "Personaje colisiona con Villano y pierde vida"{
 		const villanoBarraBrava = new Villano (position = game.at(2,1),direccion = [zombieBabosoIzquierda])
 		game.addVisual(villanoBarraBrava)
-		nivel1.iniciar()
 		personaje.vida(99)
 		villanoBarraBrava.chocasteCarpincho(personaje)
 		assert.equals(personaje.vida(), 66)	

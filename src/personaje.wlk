@@ -88,55 +88,9 @@ class Personaje{
 		
 	}
 	method actualizarMunicion(){
-		if (municiones == 15){
-			contadorMunicion.recorrerListaMunicion(0)
-		}
-		else if (municiones == 14){
-			contadorMunicion.recorrerListaMunicion(1)
-		}
-		else if (municiones == 13){
-			contadorMunicion.recorrerListaMunicion(2)
-		}
-		else if (municiones == 12){
-			contadorMunicion.recorrerListaMunicion(3)
-		}
-		else if (municiones == 11){
-			contadorMunicion.recorrerListaMunicion(4)
-		}
-		else if (municiones == 10){
-			contadorMunicion.recorrerListaMunicion(5)
-		}
-		else if (municiones == 9){
-			contadorMunicion.recorrerListaMunicion(6)
-		}
-		else if (municiones == 8){
-			contadorMunicion.recorrerListaMunicion(7)
-		}
-		else if (municiones == 7){
-			contadorMunicion.recorrerListaMunicion(8)
-		}
-		else if (municiones == 6){
-			contadorMunicion.recorrerListaMunicion(9)
-		}
-		else if (municiones == 5){
-			contadorMunicion.recorrerListaMunicion(10)
-		}
-		else if (municiones == 4){
-			contadorMunicion.recorrerListaMunicion(11)
-		}
-		else if (municiones == 3){
-			contadorMunicion.recorrerListaMunicion(12)
-		}
-		else if (municiones == 2){
-			contadorMunicion.recorrerListaMunicion(13)
-		}
-		else if (municiones == 1){
-			contadorMunicion.recorrerListaMunicion(14)
-		}
-		else if (municiones == 0){
-			contadorMunicion.recorrerListaMunicion(15)
-		}
+		contadorMunicion.recorrerListaMunicion(15 - municiones)
 	}
+	
 	//no iria pero para que no salga el mensaje
 	method colisionConBala(bala){}
 	method chocasteCarpincho(unPersonaje){}

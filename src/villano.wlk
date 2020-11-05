@@ -85,10 +85,9 @@ object generarSuperVillano{
 }
 
 object generadorDeVillanos{
-	method generarVillanos(){
-		const villanos = [
-		new Villano(position = game.at(1,5),direccion =   [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
-		new Villano (position = game.at(1,10),direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
+	const villanos = [
+	    new Villano(position = game.at(1,5),direccion =   [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
+	    new Villano (position = game.at(1,10),direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
 	    new Villano (position = game.at(3,5),direccion =  [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
 	    new Villano (position = game.at(3,10),direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
 	    new Villano (position = game.at(6,4),direccion =  [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
@@ -112,8 +111,8 @@ object generadorDeVillanos{
 	    new Villano (position = game.at(23,12),direccion =[zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
 	    new Villano (position = game.at(24,1),direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()),
 	    new Villano (position = game.at(24,12),direccion =[zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne())] 
+	method generarVillanos(){
 	    villanos.forEach{villano => game.addVisual(villano)}
 	    game.onTick(1000, "movimiento", {villanos.forEach({villano => villano.moverse()})}) 
 	}
-
 }

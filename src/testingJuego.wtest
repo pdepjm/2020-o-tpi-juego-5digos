@@ -117,3 +117,12 @@ describe "Personajes pierden partida"{
 		assert.that(personaje.perder())
 	}
 }
+
+describe "Personajes ganan la partida"{
+	
+	test "todos los superVillanos mueren"{
+		nivel1.iniciar()
+		generarSuperVillano.superZombiesMuertos()
+		assert.that(personaje.ganar())
+	}
+}

@@ -59,7 +59,8 @@ class SuperVillano inherits Villano{
 			muerto=true
 			self.spawnearObjeto()
 			if(generarSuperVillano.superZombiesMuertos()){
-				game.schedule(2000, {nivel3.iniciar()})
+				personaje.ganar()
+				personaje2.ganar()
 			}
 		  }
 	   return true

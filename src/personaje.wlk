@@ -34,7 +34,7 @@ class Personaje{
 		else {
 			self.ir(direccion.opuesto())
 		}
-	}
+}
 	method moverse(){
 	     if(objetosDeAdelante.todosObjetosAtravesables(self)){
     		position = direccion.avanzar(position,1)
@@ -51,6 +51,11 @@ class Personaje{
 		game.removeVisual(self)
 		jugadorVivo = false
 		game.schedule(2000, {nivel2.iniciar()})
+		return true
+	}
+	
+	method ganar(){
+		game.schedule(2000, {nivel3.iniciar()})
 		return true
 	}
 	method disparar(){

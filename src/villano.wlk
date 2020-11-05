@@ -21,7 +21,6 @@ class Villano{
 	}
 	method hacerDanio(unPersonaje){
 		unPersonaje.recibirDanio(danio)
-		unPersonaje.actualizarVida()
 	}
     method moverse(){
         direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()

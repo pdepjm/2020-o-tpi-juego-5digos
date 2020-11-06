@@ -82,7 +82,7 @@ class Personaje{
 		
 	}
 	method actualizarMunicion(){
-		contadorMunicion.recorrerListaMunicion(15 - municiones)
+		contadorMunicion.mostrarMunicionRestante(15 - municiones)
 	}
 	
 	//no iria pero para que no salga el mensaje
@@ -129,7 +129,7 @@ class ContadoresDeMunicion{
 	
 	method image() = imagenDeMunicion
 	
-	method recorrerListaMunicion(unIndice){
+	method mostrarMunicionRestante(unIndice){
 		imagenDeMunicion = imagenMunicion.get(unIndice)
 	}
 }

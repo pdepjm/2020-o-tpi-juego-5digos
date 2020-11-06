@@ -9,62 +9,79 @@ import villano.*
 
 
 describe "Movimientos del Personaje y colisiones con estructuras NO atravesables" {
+	fixture {
+		nivel1.iniciar()
+	}
 	// recordar que personaje inicia en la posicion (1,1)
 	test "personaje.ir(carpinchoRickDerecha) mueve al personaje 1 posicion hacia la derecha" {
-		nivel1.iniciar()
 		personaje.ir(carpinchoRickDerecha)
 		assert.equals(game.at(2, 1), personaje.position())
 	}
 	
 	test "personaje.ir(carpinchoRickIzquierda) no cambia la posicion del personaje dado que una pared se lo impide" {
-		nivel1.iniciar()
 		personaje.ir(carpinchoRickIzquierda)
 		assert.equals(game.at(1, 1), personaje.position())
 	}
 	
 	test "personaje.ir(carpinchoRickArriba) mueve al personaje 1 posicion hacia arriba" {
-		nivel1.iniciar()
 		personaje.ir(carpinchoRickArriba)
 		assert.equals(game.at(1, 2), personaje.position())
 	}
 	
 	test "personaje.ir(carpinchoRickAbajo) no cambia la posicion del personaje dado que una pared se lo impide" {
-		nivel1.iniciar()
 		personaje.ir(carpinchoRickAbajo)
 		assert.equals(game.at(1, 1), personaje.position())
 	}
 }
 
 describe "Colisiones de Balas"{
+	fixture {
+		nivel1.iniciar()
+	}
 	// recordar que personaje inicia en la posicion (1,1)
-	test "Bala colisiona contra ParedLadrillo o ParedExterior (no son rompibles)" {
+	test "bala se destruye al colisionar con estructura (tambien aplica para villanos y balas)" {
 		const nuevaPared = new ParedLadrillo(position = game.at(4,1))
 		game.addVisual(nuevaPared)
 		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
 		game.addVisual(balaPrueba)
-		assert.that(nuevaPared.colisionConBala(balaPrueba))
+		nuevaPared.colisionConBala(balaPrueba)
+		assert.notThat(game.hasVisual(balaPrueba))
 	}
 	
-	test "Bala colisiona contra ParedTrucha (son rompibles)" {
-		const nuevaPared = new ParedTrucha(position = game.at(4,1))
-		game.addVisual(nuevaPared)
+	test "pared rompible desaparece tras colision con bala" {
+		const paredRompible = new ParedTrucha(position = game.at(4,1))
+		game.addVisual(paredRompible)
 		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
 		game.addVisual(balaPrueba)
-		assert.that(nuevaPared.colisionConBala(balaPrueba))
+		paredRompible.colisionConBala(balaPrueba)
+		assert.notThat(game.hasVisual(paredRompible))
 	}
 	
-	test "Bala colisiona contra Villano" {
+	test "pared no rompible permanece tras colision con bala" {
+		const paredAfaerte = new ParedLadrillo(position = game.at(4,1))
+		game.addVisual(paredAfaerte)
+		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
+		game.addVisual(balaPrueba)
+		paredAfaerte.colisionConBala(balaPrueba)
+		assert.that(game.hasVisual(paredAfaerte))
+	}
+	
+	test "villano muere al colisionar con bala" {
 		const villanoPrueba = new Villano (position = game.at(4,1),direccion = [zombieBabosoIzquierda])
 		game.addVisual(villanoPrueba)
-		const balaPrueba = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
-		game.addVisual(balaPrueba)
-		assert.that(villanoPrueba.colisionConBala(balaPrueba))	
+		const balaAsesina = new Balas (position = personaje.position(), direccion = personaje.direccion(),danioDeBala=33)
+		game.addVisual(balaAsesina)
+		villanoPrueba.colisionConBala(balaAsesina)
+		assert.notThat(game.hasVisual(villanoPrueba))	
 	}
 }
 
 describe "Efectos de Objetos"{
+	fixture {
+		nivel1.iniciar()
+	}
 // recordar que personaje inicia en la posicion (1,1)
-	test "Personaje con vida llena recoge pasto" {
+	test "pasto aumenta la vida del personaje pero esta no sobrepasa su limite" {
 		const pastoPrueba = new Pasto(cura = 33, position = game.at(1,1))
 		game.addVisual(pastoPrueba)
 		personaje.vida(99)
@@ -72,7 +89,7 @@ describe "Efectos de Objetos"{
 		assert.equals(personaje.vida(), 99)
 	}
 	
-	test "Personaje con un tercio de vida recoge pasto" {
+	test "pasto aumenta la vida del personaje en 33 unidades" {
 		const pastoPrueba = new Pasto(position = game.at(1,1), cura=33)
 		game.addVisual(pastoPrueba)
 		personaje.vida(33)
@@ -80,7 +97,7 @@ describe "Efectos de Objetos"{
 		assert.equals(personaje.vida(), 66)
 	}
 
-	test "Personaje con un tercio de vida recoge mate"{
+	test "mate llena la vida del personaje"{
 		const matePrueba = new Mate(position = game.at(1,1), cura=100)
 		game.addVisual(matePrueba)
 		personaje.vida(33)
@@ -88,7 +105,7 @@ describe "Efectos de Objetos"{
 		assert.equals(personaje.vida(), 99)
 	}
 
-	test "Personaje sin balas recoge municion"{
+	test "caja de municion aumenta las municiones del personaje en 1 unidad"{
 		const municionPrueba = new Municion(position = game.at(1,1))
 		game.addVisual(municionPrueba)
 		personaje.municiones(0)
@@ -98,6 +115,9 @@ describe "Efectos de Objetos"{
 }
 
 describe "Colision entre Personaje y Villano"{
+	fixture {
+		nivel1.iniciar()
+	}
 // recordar que personaje inicia en la posicion (1,1)	
 	test "Personaje colisiona con Villano y pierde vida"{
 		const villanoBarraBrava = new Villano (position = game.at(2,1),direccion = [zombieBabosoIzquierda])
@@ -106,13 +126,15 @@ describe "Colision entre Personaje y Villano"{
 		villanoBarraBrava.chocasteCarpincho(personaje)
 		assert.equals(personaje.vida(), 66)	
 	}
-	
 }
 
 describe "Personajes pierden partida"{
 	
+	fixture {
+		nivel1.iniciar()
+	}
+	
 	test "algun personaje muere"{
-		game.addVisual(personaje)
 		personaje.vida(0)
 		assert.that(personaje.perder())
 	}
@@ -120,9 +142,12 @@ describe "Personajes pierden partida"{
 
 describe "Personajes ganan la partida"{
 	
-	test "todos los superVillanos mueren"{
+	fixture {
 		nivel1.iniciar()
+	}
+	
+	test "todos los superVillanos mueren"{
 		generarSuperVillano.superZombiesMuertos()
-		assert.that(personaje.ganar())
+		assert.notThat(game.hasVisual(generarSuperVillano))
 	}
 }

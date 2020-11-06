@@ -33,9 +33,8 @@ class Villano{
     }
     method colisionConBala(bala){
     	bala.desaparecer()
-    	game.schedule(100,{game.removeVisual(self)})
+    	game.removeVisual(self)
     	self.spawnearObjeto()
-    	return true
     }
     method spawnearObjeto(){
 		municion.generaUno(position)
@@ -63,7 +62,6 @@ class SuperVillano inherits Villano{
 				personaje2.ganar()
 			}
 		  }
-	   return true
     }
     override method spawnearObjeto(){
     	super()

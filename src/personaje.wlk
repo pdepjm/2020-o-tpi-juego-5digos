@@ -66,6 +66,13 @@ class Personaje{
 		self.position(position)
 		self.direccion(direccion)
 	}
+	
+	
+	method actualizarVida(){
+		barraDeVida.recorrerListaVidas(3 - (vida / 33))
+	}
+	
+	/* 
 	method actualizarVida(){
 		if (vida == 99){
 			barraDeVida.recorrerListaVidas(0)
@@ -80,7 +87,7 @@ class Personaje{
 			barraDeVida.recorrerListaVidas(3)
 		}
 		
-	}
+	}*/
 	method actualizarMunicion(){
 		contadorMunicion.mostrarMunicionRestante(15 - municiones)
 	}

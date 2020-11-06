@@ -22,16 +22,10 @@ object juego{
 		self.configurarJuego()
 		self.agregarPersonajes()
 		self.configurarTeclas()
-		paredes.generar()
-		paredesDentro.generar()
-		caja.generar()
-		paredTrucha.generar()
-		generadorDeVillanos.generarVillanos()
-		generarSuperVillano.generarVillanos()
-		game.addVisual(barraVidaP1)
-		game.addVisual(barraVidaP2)
-		game.addVisual(contadorMunicionP1)
-		game.addVisual(contadorMunicionP2)
+		self.agregarParedes()
+		self.agregarVillanos()
+		self.agregarBarraDeVida()
+		self.agregarContadorMunicion()
 		game.onCollideDo(personaje,{villano => villano.chocasteCarpincho(personaje)})
 		game.onCollideDo(personaje2,{villano => villano.chocasteCarpincho(personaje2)})
 		game.onCollideDo(personaje,{objeto => personaje.agarrar(objeto)})
@@ -50,6 +44,30 @@ object juego{
 		game.addVisual(personaje)
 		game.addVisual(personaje2)
 	}
+	
+	method agregarParedes(){
+		paredes.generar()
+		paredesDentro.generar()
+		caja.generar()
+		paredTrucha.generar()
+	}
+	
+	method agregarVillanos(){
+		generadorDeVillanos.generarVillanos()
+		generarSuperVillano.generarVillanos()
+	}
+	
+	method agregarBarraDeVida(){
+		game.addVisual(barraVidaP1)
+		game.addVisual(barraVidaP2)
+	}
+	
+	method agregarContadorMunicion(){
+		game.addVisual(contadorMunicionP1)
+		game.addVisual(contadorMunicionP2)
+	}
+	
+	
 	method configurarTeclas() {
 		keyboard.up().onPressDo{personaje.ir(carpinchoRickArriba)}
 		keyboard.down().onPressDo{personaje.ir(carpinchoRickAbajo)}

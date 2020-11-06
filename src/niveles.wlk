@@ -6,18 +6,18 @@ import objectos.*
 import movimientos.*
 import balas.*
 
-object nivel0 { 
+object menuPrincipal { 
 
 	var property position = game.origin()
 	var property image = "menu.png"
 
 	method iniciar() {
 		game.addVisual(self)
-		keyboard.enter().onPressDo({ game.removeVisual(self) nivel1.iniciar()})
+		keyboard.enter().onPressDo({ game.removeVisual(self) juego.iniciar()})
 	}
 }
 
-object nivel1{
+object juego{
 	method iniciar() {
 		self.configurarJuego()
 		self.agregarPersonajes()
@@ -66,7 +66,7 @@ object nivel1{
 		}
 	}
 	
-object nivel2{
+object menuGameOver{
 	
 	var property position = game.origin()
 	var property image = "menuGO.png"
@@ -74,11 +74,10 @@ object nivel2{
 	method iniciar() {
 		game.addVisual(self)
 		keyboard.f().onPressDo({game.stop()})
-		return true
 	}
 }
 
-object nivel3{
+object menuGanador{
 	
 	var property position = game.origin()
 	var property image = "menuWin.png"
@@ -86,6 +85,5 @@ object nivel3{
 	method iniciar() {
 		game.addVisual(self)
 		keyboard.w().onPressDo({game.stop()})
-		return true
 	}
 }

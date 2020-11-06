@@ -10,7 +10,7 @@ program game {
 	
 	game.width(27)
 	
-	nivel0.iniciar()
+	menuPrincipal.iniciar()
 	
 	game.start()
 }

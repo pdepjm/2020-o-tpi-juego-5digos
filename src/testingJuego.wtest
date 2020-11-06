@@ -10,7 +10,7 @@ import villano.*
 
 describe "Movimientos del Personaje y colisiones con estructuras NO atravesables" {
 	fixture {
-		nivel1.iniciar()
+		juego.iniciar()
 	}
 	// recordar que personaje inicia en la posicion (1,1)
 	test "personaje.ir(carpinchoRickDerecha) mueve al personaje 1 posicion hacia la derecha" {
@@ -36,7 +36,7 @@ describe "Movimientos del Personaje y colisiones con estructuras NO atravesables
 
 describe "Colisiones de Balas"{
 	fixture {
-		nivel1.iniciar()
+		juego.iniciar()
 	}
 	// recordar que personaje inicia en la posicion (1,1)
 	test "bala se destruye al colisionar con estructura (tambien aplica para villanos y balas)" {
@@ -78,7 +78,7 @@ describe "Colisiones de Balas"{
 
 describe "Efectos de Objetos"{
 	fixture {
-		nivel1.iniciar()
+		juego.iniciar()
 	}
 // recordar que personaje inicia en la posicion (1,1)
 	test "pasto aumenta la vida del personaje pero esta no sobrepasa su limite" {
@@ -116,7 +116,7 @@ describe "Efectos de Objetos"{
 
 describe "Colision entre Personaje y Villano"{
 	fixture {
-		nivel1.iniciar()
+		juego.iniciar()
 	}
 // recordar que personaje inicia en la posicion (1,1)	
 	test "Personaje colisiona con Villano y pierde vida"{
@@ -131,19 +131,19 @@ describe "Colision entre Personaje y Villano"{
 describe "Personajes pierden partida"{
 	
 	fixture {
-		nivel1.iniciar()
+		juego.iniciar()
 	}
 	
 	test "algun personaje muere"{
-		personaje.vida(0)
-		assert.that(personaje.perder())
+		personaje.recibirDanio(99)
+		assert.notThat(personaje.jugadorVivo())
 	}
 }
 
 describe "Personajes ganan la partida"{
 	
 	fixture {
-		nivel1.iniciar()
+		juego.iniciar()
 	}
 	
 	test "todos los superVillanos mueren"{

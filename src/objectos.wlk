@@ -43,6 +43,15 @@ object objetosDeAdelante{
     method todosObjetosAtravesables(personajeQueSeMueve) = self.objetosDelante(personajeQueSeMueve).all({objeto => objeto.esAtravesable()})
 }
 
+object objetosParaMoverseAdelante{
+	method condicionParaMoverse(personajeEnMovimiento,direccion){
+		 if(objetosDeAdelante.todosObjetosAtravesables(personajeEnMovimiento)){
+    		personajeEnMovimiento.position(direccion.avanzar(personajeEnMovimiento.position(),1))
+	     }
+}
+}
+
+
 class Municion {
 	var property position
 	var property carga = 1

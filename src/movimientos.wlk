@@ -70,7 +70,7 @@ object zombieBabosoAbajo inherits Abajo{
 	method imagePersonaje()="ZombieFrente.png"
 }
 
-//se podia haber instanciado pero queda feo ademas la diversidad de objetos e instancias hace hermoso al mundo y si no nos agarramos en donde quieras
+//se podia haber instanciado pero queda feo ademas la diversidad de objetos e instancias hace hermoso al mundo y si no nos agarramos en donde quieras(firma Didier)
 object izquierda inherits Izquierda{}
 object derecha inherits Derecha{}
 object abajo inherits Abajo{}

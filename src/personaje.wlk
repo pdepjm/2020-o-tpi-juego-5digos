@@ -34,12 +34,11 @@ class Personaje{
 		else {
 			self.ir(direccion.opuesto())
 		}
-}
+    }
 	method moverse(){
-	     if(objetosDeAdelante.todosObjetosAtravesables(self)){
-    		position = direccion.avanzar(position,1)
-    	 }
+		objetosParaMoverseAdelante.condicionParaMoverse(self,direccion)
 	}
+	
 	method agarrar(objeto){
 		objeto.efecto(self)
 	}

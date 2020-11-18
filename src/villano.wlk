@@ -26,11 +26,10 @@ class Villano{
         direccion = [zombieBabosoIzquierda,zombieBabosoDerecha,zombieBabosoArriba,zombieBabosoAbajo].anyOne()
    	    self.moverseHacia(direccion)
     }
+    
     method moverseHacia(newDireccion){
-        if(objetosDeAdelante.todosObjetosAtravesables(self)){	
-    		position = newDireccion.avanzar(position,1)
-    	    }
-    }
+		objetosParaMoverseAdelante.condicionParaMoverse(self,newDireccion)
+	}
     method colisionConBala(bala){
     	bala.desaparecer()
     	game.removeVisual(self)
